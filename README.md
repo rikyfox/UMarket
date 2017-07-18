@@ -24,4 +24,8 @@ comunque in grado di modificare o mettere commenti riguardanti gli articoli che 
 AMMINISTRATORE
 L'amministratore del sito è in grado di vedere e modificare tutte le info relative a carrello,negozio, profili utenti,
 commenti e articoli.
+<<<<<<< HEAD
 L'amministratore può cancellare gli utenti dal sito.
+=======
+L'amministratore può cancellare gli utenti dal sito.
+>>>>>>> fd636ba646402cd637c3080b6c758bba6a1fc1dd
