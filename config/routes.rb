@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'      #create a new session (login)
   delete '/logout',  to: 'sessions#destroy'     #delete a session (log out)
   resources :users
+  resources :microposts,          only: [:create, :destroy]
 
 end
