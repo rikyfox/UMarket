@@ -1,5 +1,17 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy  #the option dependent: :destroy arranges for the dependent microposts to be destroyed when the user itself is destroyed
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
+
+  has_many :following, through: :active_relationships, source: :followed  #the source parameter, which explicitly tells Rails that the source of the following array is the set of followed ids.
+
+  has_many :followers, through: :passive_relationships, source: :follower
+
   attr_accessor :remember_token
   before_save { self.email = email.downcase }   #email = email.downcase wouldn’t work.
   validates :name,  presence: true, length: { maximum: 50 }
@@ -20,8 +32,28 @@ class User < ApplicationRecord
   # Defines a proto-feed.
   # See "Following users" for the full implementation.
   def feed
-    Micropost.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)           #similar to Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
   end
+
+  # Follows a user.
+  def follow(other_user)
+    following << other_user
+  end
+
+  # Unfollows a user.
+  def unfollow(other_user)
+    following.delete(other_user)
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+  private
 
   # Returns a random token.
   def User.new_token
