@@ -22,13 +22,12 @@
     <div class="center jumbotron">
     <h1> Welcome to U-Market</h1>
 
-    <h2>
-        This is the home page for the
-        <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-        sample application.
-    </h2>
-
-    <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+    <form accept-charset="UTF-8" action="/search" method="get">
+        <input name="utf8" type="hidden" value="&#x2713;" />
+        <label for="q">Search for:</label>
+        <input id="q" name="q" type="text" />
+        <input name="commit" type="submit" value="Search" />
+    </form>
     </div>
 <% end %>
 
