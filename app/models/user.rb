@@ -53,8 +53,6 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  private
-
   # Returns a random token.
   def User.new_token
     SecureRandom.urlsafe_base64
