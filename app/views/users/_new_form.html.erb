@@ -1,0 +1,10 @@
+<%= simple_form_for @user do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.input :name, label_html: { class: 'my_class' } %>
+  <%= f.input :email, label_html: { class: 'my_class' } %>
+  <%= f.input :password, error_html: { id: 'password_error'} %>
+  <%= f.input :password_confirmation, label_html: { class: 'my_class' } %>
+  <%= f.collection_radio_buttons :role, [['buyer', 'Buyer'] ,['vendor', 'Vendor']],
+                             :first, :last, { item_wrapper_tag: false } %>
+  <%= f.button :submit %>
+<% end %>

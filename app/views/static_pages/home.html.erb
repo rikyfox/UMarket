@@ -22,12 +22,11 @@
     <div class="center jumbotron">
     <h1> Welcome to U-Market</h1>
 
-    <form accept-charset="UTF-8" action="/search" method="get">
-        <input name="utf8" type="hidden" value="&#x2713;" />
-        <label for="q">Search for:</label>
-        <input id="q" name="q" type="text" />
-        <input name="commit" type="submit" value="Search" />
-    </form>
+    <%= form_tag("/search", method: "get") do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+    <% end %>
     </div>
 <% end %>
 

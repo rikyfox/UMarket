@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  enum role: [:buyer, :vendor, :admin]
+
+  has_many :assignments
+  has_many :roles, through: :assignments
   has_many :microposts, dependent: :destroy  #the option dependent: :destroy arranges for the dependent microposts to be destroyed when the user itself is destroyed
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
@@ -73,6 +77,11 @@ class User < ApplicationRecord
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # Returns true if the given role matches any of the user’s roles.
+  def role?(role)
+    roles.any? { |r| r.name.underscore.to_sym == role }
   end
 
 end
