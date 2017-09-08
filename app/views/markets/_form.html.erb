@@ -1,0 +1,19 @@
+<%= simple_form_for ([@user, @market]) do |f| %>
+   <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label :Tipo %>:
+  <%= f.collection_radio_buttons :tipo, [['tecnologia', 'Tecnologia'] ,['sport', 'Sport'] ,['elettrodomestici', 'Elettrodomestici'] ,['auto', 'Auto'] ,['casa', 'Casa']],
+                             :first, :last, { item_wrapper_tag: false } %>
+							 </br>
+							 
+  <%= f.label :nation %>
+  <%= f.text_field :nation, class: 'form-control' %>
+  
+  <%= f.label :city %>
+  <%= f.text_field :city, class: 'form-control' %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

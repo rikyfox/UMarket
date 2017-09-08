@@ -4,8 +4,12 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><%= link_to "Showcase", '#' %></li>
-          <li><%= link_to "Messages", '#' %></li>
+		  <% if current_user.vendor? %>
+			<li><%= link_to "Bacheca", '#' %></li>
+		  <% else %>		
+		    <li><%= link_to "Showcase", '#' %></li>
+		  <% end %>
+		  <li><%= link_to "Messages", '#' %></li>
           <li><%= link_to "Vendors", users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

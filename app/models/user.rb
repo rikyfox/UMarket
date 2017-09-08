@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :assignments
   has_many :roles, through: :assignments
+  has_many :markets, dependent: :destroy
   has_many :microposts, dependent: :destroy  #the option dependent: :destroy arranges for the dependent microposts to be destroyed when the user itself is destroyed
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",

@@ -5,6 +5,7 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
+		<%= @user.role %>
       </h1>
     </section>
     <section class="stats">
@@ -22,7 +23,10 @@
       <%= will_paginate @microposts %>
     <% end %>
   </div>
+  
+	<% if current_user?(@user) %>
+	<%= link_to "Crea negozio", new_user_market_path(@user) %>
+	<% end %>
 
 </div>
-
 
