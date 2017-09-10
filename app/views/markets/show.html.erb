@@ -16,10 +16,12 @@
 	<% end %>
 
 	<ul/></span>
+	<%= render 'followmarkets/follow_form' if logged_in? && current_user.buyer? %>
 </aside>
 
   <span class="content">
 	Info:
+	tipo:<%= @market.tipo %></br>
     nazione:<%= @market.nation %></br>
     città:<%= @market.city %>
   </span>

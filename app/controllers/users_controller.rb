@@ -65,6 +65,17 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def followingmarkets
+		@title = "Following Markets"
+		@user  = User.find(params[:id])
+	if current_user?(@user)
+		@markets = @user.followingmarkets.paginate(page: params[:page])
+		render 'followmarkets/show_follow'
+		return
+	end
+	redirect_to followingmarkets_user_path(current_user)
+  end
+  
   private
 
     def user_params

@@ -1,0 +1,25 @@
+Relationship 			=>		Followmarket
+follower_id				=>		buyer_id
+followed_id				=>		market_followed_id
+
+USER							USER
+active_relationships	=> 		active_followmarkets
+following				=> 		followingmarkets
+
+other_user				=> 		other_market
+follow					=>		followmarket
+unfollow				=>		unfollowmarket
+following?				=>		followingmarket?
+
+USER							MARKET
+passive_relationships	=>		passive_followmarkets
+followers				=>		followerbuyers
+
+--
+
+ROUTE
+following				=>		followingmarkets
+relationships			=>		followmarkets
+
+USER CONTROLLER
+following				=> 		followingmarkets

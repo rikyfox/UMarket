@@ -1,0 +1,2 @@
+module FollowmarketsHelper
+end

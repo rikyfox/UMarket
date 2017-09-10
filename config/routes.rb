@@ -10,12 +10,13 @@ Rails.application.routes.draw do
     resources :markets				
     member do
       get :following, :followers
+	  get :followingmarkets
     end
   end
 
   resources :users
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-
+  resources :followmarkets,       only: [:create, :destroy]
 
 end

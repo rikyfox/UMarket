@@ -10,7 +10,11 @@
 		    <li><%= link_to "Showcase", '#' %></li>
 		  <% end %>
 		  <li><%= link_to "Messages", '#' %></li>
-          <li><%= link_to "Vendors", users_path %></li>
+		  <% if current_user.buyer? %>
+			<li><%= link_to "Negozi", followingmarkets_user_path(current_user) %></li>
+		  <% else %>		
+			<li><%= link_to "Vendors", users_path %></li>
+		  <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>

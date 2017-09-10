@@ -17,6 +17,13 @@ class User < ApplicationRecord
 
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :active_followmarkets, class_name:  "Followmarket",
+                                  foreign_key: "buyer_id",
+                                  dependent:   :destroy
+
+  has_many :followingmarkets, through: :active_followmarkets, source: :market_followed  #the source parameter, which explicitly tells Rails that the source of the following array is the set of followed ids.
+
+								  
   attr_accessor :remember_token
   before_save { self.email = email.downcase }   #email = email.downcase wouldn’t work.
   validates :name,  presence: true, length: { maximum: 50 }
@@ -57,7 +64,22 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+  
+  # Follows a market.
+  def followmarket(other_market)
+    followingmarkets << other_market
+  end
 
+  # Unfollows a market.
+  def unfollowmarket(other_market)
+    followingmarkets.delete(other_market)
+  end
+
+  # Returns true if the current user is following the other user.
+  def followingmarket?(other_market)
+    followingmarkets.include?(other_market)
+  end
+  
   # Returns a random token.
   def User.new_token
     SecureRandom.urlsafe_base64

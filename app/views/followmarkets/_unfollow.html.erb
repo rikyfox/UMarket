@@ -1,0 +1,4 @@
+<%= form_for(current_user.active_followmarkets.find_by(market_followed_id: @market.id),
+             html: { method: :delete }) do |f| %>
+  <%= f.submit "Unfollow", class: "btn" %>
+<% end %>
