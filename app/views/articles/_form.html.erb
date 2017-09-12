@@ -1,0 +1,20 @@
+<%= simple_form_for ([@user, @market, @article]) do |f| %>
+   <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label :prezzo %>
+ <%= f.text_field :prezzo, label_html: { class: 'my_class' }%>
+
+  <%= f.label :Status %>:
+  <%= f.collection_radio_buttons :status, [[true, 'Disponibile'] ,[false, 'Non disponibile']],
+                             :first, :last, { item_wrapper_tag: false } %>
+							 </br>
+							 
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control' %>
+
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

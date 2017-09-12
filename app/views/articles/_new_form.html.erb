@@ -1,0 +1,9 @@
+<%= simple_form_for ([@user, @market, @market.articles.build]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.input :name, label_html: { class: 'my_class' } %>
+  <%= f.input :prezzo, label_html: { class: 'my_class' }%>
+  <%= f.collection_radio_buttons :status, [[true, 'Disponibile'] ,[false, 'Non disponibile']],
+                             :first, :last, { item_wrapper_tag: false } %>
+  <%= f.input :description, label_html: { class: 'my_class' } %>
+  <%= f.button :submit %>
+<% end %>

@@ -5,4 +5,14 @@ class StaticPagesController < ApplicationController
       @feed_items = current_user.feed.paginate(page: params[:page])
     end
   end
+  
+  def search
+	if params[:q]
+		@help=params[:q]
+		@articoli = Article.where("name LIKE ?", "%#{@help}%").paginate(page: params[:page])
+	else
+		redirect_to root_path
+	end
+	
+  end
 end

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170909103504) do
+ActiveRecord::Schema.define(version: 20170910175228) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "prezzo_cents",    default: 0,     null: false
+    t.string   "prezzo_currency", default: "EUR", null: false
+    t.text     "description"
+    t.boolean  "status"
+    t.integer  "market_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["market_id"], name: "index_articles_on_market_id"
+  end
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "user_id"

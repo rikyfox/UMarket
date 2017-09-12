@@ -8,7 +8,9 @@
     </section>
 	<span class="user">
 	<ul>
+	<% if logged_in? && current_user.vendor? %>	
 	<li><%= link_to "Bacheca Venditore", @user %></li>
+	<% end %>
 	<% if current_user?(@user) %>
     <li><%= link_to "Modifica negozio", edit_user_market_path(@user, @market) %></li>
     <li><%= link_to "Distruggi negozio", user_market_url, method: :delete,
@@ -17,6 +19,22 @@
 
 	<ul/></span>
 	<%= render 'followmarkets/follow_form' if logged_in? && current_user.buyer? %>
+	
+	<span>
+	<div class="col-md-8">
+    <h3>Articoli di <%= @market.name %></h3>
+    <% if @articles.any? %>
+      <ul class="articles follow">
+        <%= render @articles %>
+      </ul>
+      <%= will_paginate @articles %>
+    <% end %>
+  </div>
+	</span>
+	
+	<% if current_user?(@user) && current_user.vendor? %>
+	<%= link_to "Crea articolo", new_user_market_article_path(@user, @market) %>
+	<% end %>
 </aside>
 
   <span class="content">

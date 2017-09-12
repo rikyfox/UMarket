@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  prezzo: 1.5
+  description: MyText
+  status: false
+  market: one
+
+two:
+  name: MyString
+  prezzo: 1.5
+  description: MyText
+  status: false
+  market: two

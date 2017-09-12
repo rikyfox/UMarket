@@ -1,0 +1,32 @@
+<% provide(:title, @article.name+" di "+@market.name) %>
+<aside class="col-md-4">
+   <section class="user_info">
+	<h1>
+	<%= @article.name %></br>
+	<%= @market.name %>
+	</h1>
+    </section>
+	<span class="user">
+	<ul>
+	<li><%= link_to "Negozio", user_market_path(@user, @market) %></li>
+    <li><%= link_to "Commenta", '#' %></li>
+	<% if @article.status %>
+    <li><%= link_to "Aggiungi al Carrello", '#' %></li>
+	<% end %>
+	<ul/></span>
+
+</aside>
+
+  <span class="content">
+	Info:
+	prezzo:<%= humanized_money_with_symbol @article.prezzo %>
+    descrizione:<%= @article.description %></br>
+    status:<% if @article.status %>
+	Disponibile
+	<% end %><% if !@article.status %>
+	Non Disponibile
+	<% end %>
+  </span>
+
+
+

@@ -1,6 +1,6 @@
 class MarketsController < ApplicationController
 
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:new, :edit, :update, :create, :destroy]
   before_action :correct_user,   only: :destroy
 
 
@@ -14,7 +14,7 @@ class MarketsController < ApplicationController
   
   def create
   	@user=User.find(params[:user_id])
-    @market = @user.markets.create(market_params)  #Note the use of strong parameters via micropost_params, which permits only the micropost’s content attribute to be modified through the web.
+    @market = @user.markets.build(market_params)  #Note the use of strong parameters via micropost_params, which permits only the micropost’s content attribute to be modified through the web.
    
    if @market.save && @user.save
         flash[:success] = "Market created!"
@@ -28,6 +28,7 @@ class MarketsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
 	@market = @user.markets.find(params[:id])
+	@articles = @market.articles.paginate(page: params[:page])
   end
   
   def edit
@@ -43,7 +44,7 @@ class MarketsController < ApplicationController
 	@market = @user.markets.find(params[:id])
 
     if @market.update_attributes(market_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Market updated"
       redirect_to user_market_path(@user, @market)
     else
       redirect_to edit_user_market_path(@user, @market)

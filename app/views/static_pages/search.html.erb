@@ -1,0 +1,18 @@
+<aside class="col-md-4">
+   <section class="user_info">
+   <% if @articoli.any? %>
+      <% @articoli.each do |element| %>
+							<%= link_to element.name, user_market_article_path(element.market.user, element.market, element) %>
+							prezzo:<%= humanized_money_with_symbol element.prezzo %>
+							<% if element.status %>
+								Disponibile
+							<% end %>
+							<% if !element.status %>
+								Non Disponibile
+							<% end %>
+							<br/>
+		<% end %>
+        <%= will_paginate @articoli %>
+    <% end %>
+	</section>
+	</aside>

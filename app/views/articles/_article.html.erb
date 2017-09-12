@@ -1,0 +1,12 @@
+<li>
+	<%= article.name %>
+	<%= humanized_money_with_symbol article.prezzo %>
+  <%= link_to "visit", user_market_article_path(article.market.user, article.market, article) %>
+  	<% if current_user?(@user) %>
+
+  <%= link_to "Modifica articolo", edit_user_market_article_path(article.market.user, article.market, article) %>
+  <%= link_to "Distruggi articolo", user_market_article_path(article.market.user, article.market, article), method: :delete,
+                                  data: { confirm: "You sure?" } %>
+	<% end %>
+
+</li>

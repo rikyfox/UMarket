@@ -12,5 +12,6 @@ class Market < ApplicationRecord
                                    dependent:   :destroy
 
   has_many :followerbuyers, -> {where role: 'buyer'}, through: :passive_followmarkets, source: :buyer  #the source parameter, which explicitly tells Rails that the source of the following array is the set of followed ids.								  
-								   
+							
+ has_many :articles, dependent: :destroy
 end
