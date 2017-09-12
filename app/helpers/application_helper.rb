@@ -9,6 +9,12 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
-end
 
 # The full_title method is automagically available in all our views.
+
+  #helper method that makes use of that variable @active to highlight the current page.
+  def active_page(active_page)
+    @active == active_page ? "active" : ""
+  end
+
+end
