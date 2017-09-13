@@ -2,13 +2,11 @@
     <% message = receipt.message %>
     <div class="media">
       <div class="media-left">
-        <a href="#">
-          <img class="media-object" src="http://placehold.it/64x64" alt="...">
-        </a>
+        <%= link_to gravatar_for(message.sender, size: 50), message.sender %>
       </div>
       <div class="media-body">
         <h4 class="media-heading">
-          <%= message.sender.name %> <br>
+          <span class="user"><%= link_to message.sender.name, message.sender %></span> <br>
           <small><b>Subject: </b><%= message.subject %></small><br>
           <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
         </h4>

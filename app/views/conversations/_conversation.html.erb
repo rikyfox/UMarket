@@ -1,12 +1,10 @@
 <div class="media">
   <div class="media-left">
-    <a href="#">
-      <img class="media-object" src="http://placehold.it/64x64" alt="...">
-    </a>
+    <%= link_to gravatar_for(conversation.originator, size: 50), conversation.originator %>
   </div>
   <div class="media-body">
     <h4 class="media-heading">
-      <%= conversation.originator.name %> <br>
+      <span class="user"><%= link_to conversation.originator.name, conversation.originator %></span> <br>
       <small><b>Subject: </b><%= conversation.subject %></small><br>
       <small><b>Date: </b><%=  conversation.messages.last.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
     </h4>
