@@ -17,10 +17,6 @@
     <div class="panel panel-default">
 
       <div class="panel-body">
-        <% if @box == 'trash' %>
-          <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn btn-danger', method: :delete,
-                   data: {confirm: 'Are you sure?'} %></p>
-      <% end %>
 
         <% if is_conversation %>
             <%= render 'conversations/form' %>
@@ -32,3 +28,4 @@
   </div>
 
 </div>
+

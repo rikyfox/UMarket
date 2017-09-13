@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :logged_in_user
-  before_action :get_box
+  before_action :get_mailbox
+
 
   def new
   end
@@ -35,11 +36,9 @@ class ConversationsController < ApplicationController
   end
 
   def empty_trash
-    @mailbox.trash.each do |conversation|
-        conversation.receipts_for(current_user).update_all(deleted: true)
-    end
-    flash[:success] = 'Your trash was cleaned!'
-    redirect_to conversations_path
+    conversation.receipts_for(current_user).update_all(deleted: true)
+    flash[:success] = 'Your conversation was deleted!'
+    redirect_to mailbox_inbox_path
   end
 
 
@@ -53,11 +52,8 @@ class ConversationsController < ApplicationController
     params.require(:message).permit(:body, :subject)
   end
 
-  def get_box
-    if params[:box].blank? or !["inbox","sent","trash"].include?(params[:box])
-        params[:box] = 'inbox'
-    end
-    @box = params[:box]
+  def get_mailbox
+    @mailbox ||= current_user.mailbox
   end
 
 end
