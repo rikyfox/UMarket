@@ -1,0 +1,16 @@
+<% @receipts.each do |receipt| %>
+    <% message = receipt.message %>
+    <div class="media">
+      <div class="media-left">
+        <%= link_to gravatar_for(message.sender, size: 50), message.sender %>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <span class="user"><%= link_to message.sender.name, message.sender %></span> <br>
+          <small><b>Subject: </b><%= message.subject %></small><br>
+          <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
+        </h4>
+        <%= message.body %>
+      </div>
+    </div>
+<% end %>

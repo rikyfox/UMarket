@@ -3,8 +3,8 @@ class UsersController < ApplicationController
                                                                             # actions by passing the appropriate only: options hash.
 
   before_action :correct_user,   only: [:edit, :update]     # thanks to correct_user before filter (that defines the @user variable), we can
-                                                            # omit the @user assignments in the edit and update actions.
-  before_action :admin_user,     only: :destroy
+                                                                      # omit the @user assignments in the edit and update actions.
+  #before_action :admin_user,     only: :destroy
 
 
   def index
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :role)
     end
 
     # Before filters
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     end
 
     # Confirms an admin user.
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
+    #def admin_user
+    #  redirect_to(root_url) unless current_user.admin?
+    #end
 end

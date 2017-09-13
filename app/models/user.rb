@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  enum role: [:buyer, :vendor, :admin]
+
+  has_many :assignments
+  has_many :roles, through: :assignments
   has_many :microposts, dependent: :destroy  #the option dependent: :destroy arranges for the dependent microposts to be destroyed when the user itself is destroyed
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
@@ -21,6 +25,17 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  acts_as_messageable
+  before_destroy { messages.destroy_all }
+
+  def mailboxer_name
+    self.name
+  end
+
+  def mailboxer_email(object)
+    self.email
+  end
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -73,6 +88,11 @@ class User < ApplicationRecord
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # Returns true if the given role matches any of the user’s roles.
+  def role?(role)
+    roles.any? { |r| r.name.underscore.to_sym == role }
   end
 
 end

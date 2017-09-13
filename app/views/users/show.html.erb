@@ -10,9 +10,15 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
-
+    <% if current_user?(@user) %>
+     <%= link_to "Delete me from U-MK", @user, class: 'btn btn-danger', method: :delete,
+                                  data: { confirm: "You sure?" } %>
+    <% end %>
   </aside>
+
+
   <div class="col-md-8">
+
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
