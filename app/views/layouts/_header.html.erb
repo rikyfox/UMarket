@@ -4,23 +4,20 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
+          <li><%= link_to "Hello, #{current_user.name}!", "#" %></li>
 		  <% if current_user.vendor? %>
-			<li><%= link_to "Bacheca", '#' %></li>
-		  <% else %>		
-		    <li><%= link_to "Showcase", '#' %></li>
-		  <% end %>
-		  <li><%= link_to "Messages", '#' %></li>
-		  <% if current_user.buyer? %>
+			<li><%= link_to "Bacheca", current_user %></li>
+            <li><%= link_to "Messaggi", mailbox_inbox_path %></li>
+            <li><%= link_to "Venditori", users_path %></li>
+		  <% else %>
 			<li><%= link_to "Negozi", followingmarkets_user_path(current_user) %></li>
-		  <% else %>		
-			<li><%= link_to "Vendors", users_path %></li>
+            <li><%= link_to "Carrello", "#"  %></li>
 		  <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li>
