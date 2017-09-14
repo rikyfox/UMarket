@@ -14,13 +14,12 @@ ActiveRecord::Schema.define(version: 20170910175228) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "name"
-    t.integer  "prezzo_cents",    default: 0,     null: false
-    t.string   "prezzo_currency", default: "EUR", null: false
+    t.integer  "prezzo"
     t.text     "description"
     t.boolean  "status"
     t.integer  "market_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["market_id"], name: "index_articles_on_market_id"
   end
 
