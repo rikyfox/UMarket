@@ -1,18 +1,102 @@
-<aside class="col-md-4">
-   <section class="user_info">
-   <% if @articoli.any? %>
-      <% @articoli.each do |element| %>
-							<%= link_to element.name, user_market_article_path(element.market.user, element.market, element) %>
-							prezzo:<%= humanized_money_with_symbol element.prezzo %>
-							<% if element.status %>
-								Disponibile
-							<% end %>
-							<% if !element.status %>
-								Non Disponibile
-							<% end %>
-							<br/>
-		<% end %>
-        <%= will_paginate @articoli %>
-    <% end %>
-	</section>
-	</aside>
+<% provide(:title, "Search") %>
+<div class="container-fluid" style="background-color:#e8e8e8">
+	<div class="container container-pad" id="property-listings">
+		
+		<div class="row">
+			<div class="col-md-5">
+				
+				<h3>Articoli:</h3>
+
+				<% if @articoli.any? %>
+					<% @articoli.each do |element| %>
+					
+						<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+							<div class="media">
+								<a class="pull-left" href="#" target="_parent">
+									<%= image_tag element.picture.url, class: "img-responsive", size:"150x150" if element.picture? %>
+								</a>
+										
+								<div class="clearfix visible-sm"></div>
+
+								<div class="media-body fnt-smaller">
+									<a href="#" target="_parent"></a>
+										
+									<h3 class="media-heading">
+										<b><%= element.name %></b>
+									</h3>
+										
+									<small class="pull-right">
+										<% if element.status %>Disponibile<% end %>
+										<% if !element.status %>Non Disponibile<% end %>
+									</small>
+
+									<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+										<li>Prezzo:</li>
+										<li><%= element.prezzo %></li>
+										<li>Monete</li>
+									</ul>
+
+									<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+										<li>
+											<div class='set blue'>
+												<%= link_to "Visit", user_market_article_path(element.market.user, element.market, element), class: "btn pri ico" %>
+											</div>
+										</li>								
+									</ul>
+			
+								</div>
+							</div>
+						</div>
+					<% end %>
+					<%= will_paginate @articoli %>
+				<% end %>
+				
+			</div>
+			
+			
+			<div class="col-md-5">
+				
+				<h3>Negozi:</h3>
+
+				<% if @negozi.any? %>
+					<% @negozi.each do |element| %>
+					
+						<div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+							<div class="media">
+								<a class="pull-left" href="#" target="_parent"></a>
+										
+								<div class="clearfix visible-sm"></div>
+
+								<div class="media-body fnt-smaller">
+									<a href="#" target="_parent"></a>
+										
+									<h3 class="media-heading">
+										<b><%= element.name %></b>
+									</h3>
+
+									<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+										<li>Nazione: </li>
+										<li><%= element.nation %></li>
+										<li>Città: </li>
+										<li><%= element.city %></li>
+									</ul>
+
+									<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+										<li>
+											<div class='set blue'>
+												<%= link_to "Visit", user_market_path(element.user, element), class: "btn pri ico" %>
+											</div>
+										</li>								
+									</ul>
+			
+								</div>
+							</div>
+						</div>
+					<% end %>
+					<%= will_paginate @negozi %>
+				<% end %>
+				
+			</div>
+
+	</div>
+</div>

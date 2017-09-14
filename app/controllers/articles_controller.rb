@@ -43,10 +43,8 @@ class ArticlesController < ApplicationController
 	
     if @article.update_attributes(article_params)
       flash[:success] = "Article updated"
-	  @help.destroy
       redirect_to user_market_path(@user, @market)
     else
-		@help.destroy
       redirect_to edit_user_market_article_path(@user, @market, @article)
     end
 
@@ -69,7 +67,7 @@ class ArticlesController < ApplicationController
   private 
   
   def article_params
-        params.require(:article).permit(:name, :prezzo, :description, :status)  # list of attributes permitted to be modified through the web
+        params.require(:article).permit(:name, :prezzo, :description, :status, :picture)  # list of attributes permitted to be modified through the web
     end
 	def correct_user
       @market = current_user.markets.find(params[:market_id])

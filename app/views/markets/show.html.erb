@@ -1,48 +1,60 @@
 <% provide(:title, @market.name+" di "+@user.name) %>
-<aside class="col-md-4">
-   <section class="user_info">
-	<h1>
-	<%= @market.name %></br>
-	<%= @market.user.name %>
-	</h1>
-    </section>
-	<span class="user">
-	<ul>
-	<% if logged_in? && current_user.vendor? %>	
-	<li><%= link_to "Bacheca Venditore", @user %></li>
-	<% end %>
-	<% if current_user?(@user) %>
-    <li><%= link_to "Modifica negozio", edit_user_market_path(@user, @market) %></li>
-    <li><%= link_to "Distruggi negozio", user_market_url, method: :delete,
-                                  data: { confirm: "You sure?" } %></li>
-	<% end %>
+<div class="container-fluid" style="background-color:#e8e8e8">
+	<div class="container container-pad" id="property-listings">
+		
+		<div class="row">
+			<div class="col-md-4">
+				<h1><%= @market.name %></h1>
+				<h3><%= @market.user.name %></h3>
+				<% if logged_in? && current_user.vendor? %>	
+					<div class='set blue'>
+						<%= link_to "Bacheca Venditore", @user, class: "btn sec" %>
+						<span class="user">
+							<% if current_user?(@user) %>
+								<ul>
+								<li><%= link_to "Modifica negozio", edit_user_market_path(@user, @market) %></li>
+								<li><%= link_to "Distruggi negozio", user_market_url, method: :delete,
+								data: { confirm: "You sure?" } %></li>
+								</ul>
+							<% end %>
+						</span>
+					</div>
+				<% end %>
+				
+				<%= render 'followmarkets/follow_form' if logged_in? && current_user.buyer? %>
+			
+			</div>
 
-	<ul/></span>
-	<%= render 'followmarkets/follow_form' if logged_in? && current_user.buyer? %>
-	
-	<span>
-	<div class="col-md-8">
-    <h3>Articoli di <%= @market.name %></h3>
-    <% if @articles.any? %>
-      <ul class="articles follow">
-        <%= render @articles %>
-      </ul>
-      <%= will_paginate @articles %>
-    <% end %>
-  </div>
-	</span>
+			<div class="col-md-4"></div>
+			
+			<div class="col-md-4">
+				<h3>Info:</h3>
+				<span class="content">
+					<%= @market.tipo %></br>
+					<%= @market.nation %></br>
+					<%= @market.city %>
+				</span>
+			</div>
+		</div>
+
+		<h3>Articoli del negozio:</h3>
+		
+		<div class="row">
+			<div class="col-sm-8">
+		
+				<% if @articles.any? %>
+						<%= render @articles %>
+					<%= will_paginate @articles %>
+				<% end %>
+
+			</div>
+		</div>
 	
 	<% if current_user?(@user) && current_user.vendor? %>
-	<%= link_to "Crea articolo", new_user_market_article_path(@user, @market) %>
+		<div class='set green'>
+			<%= link_to "Crea articolo", new_user_market_article_path(@user, @market), class: "btn pri ico" %>
+		</div>
 	<% end %>
-</aside>
 
-  <span class="content">
-	Info:
-	tipo:<%= @market.tipo %></br>
-    nazione:<%= @market.nation %></br>
-    città:<%= @market.city %>
-  </span>
-
-
-
+	</div>
+</div>

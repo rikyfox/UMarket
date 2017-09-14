@@ -1,32 +1,46 @@
 <% provide(:title, @article.name+" di "+@market.name) %>
-<aside class="col-md-4">
-   <section class="user_info">
-	<h1>
-	<%= @article.name %></br>
-	<%= @market.name %>
-	</h1>
-    </section>
-	<span class="user">
-	<ul>
-	<li><%= link_to "Negozio", user_market_path(@user, @market) %></li>
-    <li><%= link_to "Commenta", '#' %></li>
-	<% if @article.status %>
-    <li><%= link_to "Aggiungi al Carrello", '#' %></li>
-	<% end %>
-	<ul/></span>
+<div class="container-fluid" style="background-color:#e8e8e8">
+	<div class="container container-pad" id="property-listings">
+		
+		<div class="row">
+			<div class="col-md-4">
+				<h1><%= @article.name %></h1>
+				<h3><%= @market.name %></h3>
 
-</aside>
+			    <%= image_tag @article.picture.url, size:"250x250" if @article.picture? %>
 
-  <span class="content">
-	Info:
-	prezzo:<%= @article.prezzo %>
-    descrizione:<%= @article.description %></br>
-    status:<% if @article.status %>
-	Disponibile
-	<% end %><% if !@article.status %>
-	Non Disponibile
-	<% end %>
-  </span>
+				<div class='set blue'>
+					<%= link_to "Negozio", user_market_path(@user, @market), class: "btn sec" %>
+				</div>			
+			</div>
 
+			
+			<div class="col-md-4">
+				<h3><b>Info:<b></h3>
+				<span class="content">
+					<h4>Prezzo:</h4> <%= @article.prezzo %></br> 
+					<h4>Descrizione articolo:</h4> <%= @article.description %></br>
+					<h4>Stato:</h4> <% if @article.status %>Disponibile<% end %>
+					<% if !@article.status %>Non Disponibile<% end %>
+				</span>
+				
+				<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+				<li>
+					<div class='set blue'>
+					<%= link_to "Commenta", "#", class: "btn pri ico" %>
+					</div>
+				</li>
+				<% if @article.status %>
+				<li>
+					<div class='set black'>
+						<%= link_to "Aggiungi al Carrello", "#", class: "btn val1 ico" %>
+					</div>
+				</li>
+				<% end %> 
+			</ul>
+			
+			</div>
+		</div>	
 
-
+	</div>
+</div>
