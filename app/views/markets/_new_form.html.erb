@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.input :name, label_html: { class: 'my_class' } %>
   Type:
-    <%= f.collection_radio_buttons :tipo, [['tecnologia', 'Tecnologia'] ,['sport', 'Sport'] ,['elettrodomestici', 'Elettrodomestici'] ,['auto', 'Auto'] ,['casa', 'Casa']],
+  <%= f.collection_radio_buttons :tipo, [['tecnologia', 'Tecnologia'] ,['sport', 'Sport'] ,['elettrodomestici', 'Elettrodomestici'] ,['auto', 'Auto'] ,['casa', 'Casa']],
                              :first, :last, { item_wrapper_tag: false } %>
   <%= f.input :nation, label_html: { class: 'my_class' } %>
   <%= f.input :city, label_html: { class: 'my_class' } %>

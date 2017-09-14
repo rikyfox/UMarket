@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
 	@market = @user.markets.find(params[:market_id])
 	@article = @market.articles.build(article_params)
 	
-   if @article.prezzo>0 && @article.save && @market.save
+   if @article.save && @market.save
         flash[:success] = "Article created!"
         redirect_to user_market_path(@user, @market) 	#user_market_article_path(@user, @market, @article)
     else
@@ -41,15 +41,10 @@ class ArticlesController < ApplicationController
 	@market = @user.markets.find(params[:market_id])
 	@article =@market.articles.find(params[:id])
 	
-	@help=Article.new(article_params)
-	@help.update_attributes(market_id: @market.id)
-	
-    if @help.valid? && @article.update_attributes(article_params)
+    if @article.update_attributes(article_params)
       flash[:success] = "Article updated"
-	  @help.destroy
       redirect_to user_market_path(@user, @market)
     else
-		@help.destroy
       redirect_to edit_user_market_article_path(@user, @market, @article)
     end
 
@@ -72,7 +67,7 @@ class ArticlesController < ApplicationController
   private 
   
   def article_params
-        params.require(:article).permit(:name, :prezzo, :description, :status)  # list of attributes permitted to be modified through the web
+        params.require(:article).permit(:name, :prezzo, :description, :status, :picture)  # list of attributes permitted to be modified through the web
     end
 	def correct_user
       @market = current_user.markets.find(params[:market_id])

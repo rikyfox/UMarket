@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
 	if params[:q]
 		@help=params[:q]
 		@articoli = Article.where("name LIKE ?", "%#{@help}%").paginate(page: params[:page])
+		@negozi = Market.where("name LIKE ?", "%#{@help}%").paginate(page: params[:page])
 	else
 		redirect_to root_path
 	end
