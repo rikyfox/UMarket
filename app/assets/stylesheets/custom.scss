@@ -282,4 +282,14 @@ span.picture {
   }
 }
 
+.markets{
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 2px solid $gray-lighter;
+  }
+}
+
 

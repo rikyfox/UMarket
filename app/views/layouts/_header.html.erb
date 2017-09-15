@@ -18,6 +18,9 @@
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+              <% if current_user.buyer? %>
+                <li><%= link_to "Profilo", current_user %></li>
+              <% end %>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li>

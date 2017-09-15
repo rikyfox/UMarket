@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
+
   end
 
 
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])      # we’ve used params to retrieve the user id
     @microposts = @user.microposts.paginate(page: params[:page])
+    @markets = @user.markets.paginate(page: params[:page])
   end
 
   def new
@@ -75,7 +77,7 @@ class UsersController < ApplicationController
 	end
 	redirect_to followingmarkets_user_path(current_user)
   end
-  
+
   private
 
     def user_params

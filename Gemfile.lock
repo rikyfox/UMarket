@@ -274,7 +274,7 @@ GEM
       monetize (~> 1.7.0)
       money (~> 6.9.0)
       railties (>= 3.0)
-    multi_json (1.12.1)
+    multi_json (1.12.2)
     nenv (0.3.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
@@ -330,7 +330,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
-    ruby-progressbar (1.8.1)
+    ruby-progressbar (1.8.3)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -374,7 +374,6 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
-    wdm (0.1.1)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -421,9 +420,8 @@ DEPENDENCIES
   turbolinks (= 5.0.1)
   tzinfo-data
   uglifier (= 3.2.0)
-  wdm (>= 0.1.0)
   web-console (= 3.5.1)
   will_paginate (= 3.1.5)
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
