@@ -5,5 +5,8 @@
   <%= f.collection_radio_buttons :status, [[true, 'Disponibile'] ,[false, 'Non disponibile']],
                              :first, :last, { item_wrapper_tag: false } %>
   <%= f.input :description, label_html: { class: 'my_class' } %>
+      <span class="picture">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  </span>
   <%= f.button :submit %>
 <% end %>

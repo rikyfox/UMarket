@@ -265,6 +265,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+<<<<<<< HEAD
     monetize (1.7.0)
       money (~> 6.9)
     money (6.9.0)
@@ -275,6 +276,9 @@ GEM
       money (~> 6.9.0)
       railties (>= 3.0)
     multi_json (1.12.2)
+=======
+    multi_json (1.12.1)
+>>>>>>> 7dd601487999b5dcac284fc7448bbf4dd6e071d6
     nenv (0.3.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
@@ -407,7 +411,6 @@ DEPENDENCIES
   mailboxer
   mini_magick (= 4.7.0)
   minitest-reporters (= 1.1.14)
-  money-rails (~> 1)
   pg (= 0.20.0)
   puma (= 3.9.1)
   rails (= 5.0.3)
