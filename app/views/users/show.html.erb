@@ -46,7 +46,7 @@
 
     <% if logged_in? && current_user.buyer? && current_user?(@user) %>
      <h3>Budget: <%= @user.budget %></h3>
-     <%= button_to 'Ricarica credito', addbudget_user_path(@user), :method => :get %>
+     <%= button_to 'Ricarica credito', addbudget_user_path(@user), :method => :get, class: "btn btn-default btn-block" %>
     <% end %>
 
 
