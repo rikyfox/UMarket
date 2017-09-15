@@ -3,7 +3,7 @@ class UsersController < ApplicationController
                                                                             # actions by passing the appropriate only: options hash.
 
   before_action :correct_user,   only: [:edit, :update]     # thanks to correct_user before filter (that defines the @user variable), we can
-                                                                      # omit the @user assignments in the edit and update actions.
+                                                            # omit the @user assignments in the edit and update actions.
   #before_action :admin_user,     only: :destroy
 
 
@@ -76,6 +76,18 @@ class UsersController < ApplicationController
 		return
 	end
 	redirect_to followingmarkets_user_path(current_user)
+  end
+
+  def addbudget
+    @user = User.find(params[:id])
+    if @user.budget <150
+        @user.budget+=50
+        @user.update_attribute(:budget, @user.budget)
+        flash[:success] = "Increased credit"
+    else
+        flash[:warning] = "Error! Budget mast be lass then 150 to recharge it"
+    end
+    redirect_to @user
   end
 
   private

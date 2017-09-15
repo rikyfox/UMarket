@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170914002231) do
+ActiveRecord::Schema.define(version: 20170915092041) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "name"
-    t.integer  "prezzo"
+    t.integer  "prezzo_cents",    default: 0,     null: false
+    t.string   "prezzo_currency", default: "EUR", null: false
     t.text     "description"
     t.boolean  "status"
     t.integer  "market_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "picture"
     t.index ["market_id"], name: "index_articles_on_market_id"
   end
@@ -137,11 +138,12 @@ ActiveRecord::Schema.define(version: 20170914002231) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.integer  "role"
+    t.integer  "budget",          default: 150, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

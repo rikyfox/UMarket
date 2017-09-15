@@ -15,6 +15,11 @@ Rails.application.routes.draw do
       get :following, :followers
 	  get :followingmarkets
     end
+
+    member do
+        get :addbudget
+    end
+
   end
 
   resources :users
