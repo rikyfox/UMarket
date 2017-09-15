@@ -19,11 +19,13 @@
 
 
   <div class="col-md-8">
-
-    <%= render 'follow_form' if logged_in? %>
-    <% unless current_user?(@user) %>
+    <% if logged_in? && current_user.vendor? %>
+        <%= render 'follow_form' if logged_in? %>
+    <% end %>
+    <% unless current_user?(@user) || current_user.buyer?%>
         <%= link_to 'Send message', new_conversation_path(to: @user), class: "btn btn-default btn-block" %>
     <% end %>
+
 
     <% if @user.markets.any? %>
       <h3>Negozi (<%= @user.markets.count %>)</h3>
@@ -36,12 +38,14 @@
       <%= will_paginate @markets, :param_name => :market_page %>
     <% end %>
 
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts, :param_name => :micropost_page%>
+    <% if current_user.vendor? %>
+        <% if @user.microposts.any? %>
+            <h3>Microposts (<%= @user.microposts.count %>)</h3>
+            <ol class="microposts">
+                <%= render @microposts %>
+            </ol>
+            <%= will_paginate @microposts, :param_name => :micropost_page%>
+        <% end %>
     <% end %>
 
     <% if logged_in? && current_user.buyer? && current_user?(@user) %>
