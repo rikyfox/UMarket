@@ -8,8 +8,10 @@ class UsersController < ApplicationController
 
 
   def index
+    unless current_user.admin?
+      @vendors = User.vendor.paginate(page: params[:page])
+    end
     @users = User.paginate(page: params[:page])
-
   end
 
 

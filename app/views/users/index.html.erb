@@ -1,14 +1,23 @@
-<% provide(:title, 'All vendors') %>
+<% provide(:title, 'All users') %>
 
-<h1>All vendors</h1>
+<% if current_user.admin? %>
+    <h1>All users</h1>
 
-<%= will_paginate %>
+    <%= will_paginate %>
 
-<ul class="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-  <% end %>
-</ul>
+    <ul class="users">
+        <% @users.each do |user| %>
+            <%= render user %>
+        <% end %>
+    </ul>
 
-<%= will_paginate %>
+    <%= will_paginate %>
+<% else %>
+    <h1>All vendors</h1>
+    <%= will_paginate @vendors, :param_name => :vendors_page %>
 
+    <ul class="users">
+        <%= render @vendors %>
+    </ul>
+
+<% end %>
