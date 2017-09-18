@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170915154900) do
+ActiveRecord::Schema.define(version: 20170918073415) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "name"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20170915154900) do
     t.string   "remember_digest"
     t.integer  "role"
     t.integer  "budget",          default: 150, null: false
+    t.text     "description"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

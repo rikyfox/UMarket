@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     member do
         get :addbudget
+        patch :description
     end
 
   end

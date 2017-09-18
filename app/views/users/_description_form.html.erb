@@ -1,0 +1,7 @@
+<%= form_for(@user, url: description_user_path(@user)) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :description %>
+  </div>
+  <%= f.submit "Edit description", class: "btn btn-primary" %>
+<% end %>

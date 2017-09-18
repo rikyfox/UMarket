@@ -92,11 +92,23 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  def description
+    @user = User.find(params[:id])
+    if @user.update_attributes(description_param)
+        flash[:success] = "Description updated"
+    end
+    redirect_to @user
+  end
+
   private
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation, :role)
+    end
+
+    def description_param
+        params.require(:user).permit(:description)
     end
 
     # Before filters
