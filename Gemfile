@@ -49,3 +49,7 @@ gem 'simple_form'
 gem 'mailboxer'
 
 gem 'chosen-rails'
+
+gem 'jquery-turbolinks'
+
+gem 'foundation-rails'

@@ -8,17 +8,20 @@ class UsersController < ApplicationController
 
 
   def index
-    unless current_user.admin?
+    unless current_user.admin? || current_user.buyer?
       @vendors = User.vendor.paginate(page: params[:page])
     end
     @users = User.paginate(page: params[:page])
+    @chosen_recipient = User.find_by(id: params[:to].to_i) if params[:to]
   end
 
 
 
   def show
     @user = User.find(params[:id])      # we’ve used params to retrieve the user id
-    @microposts = @user.microposts.paginate(page: params[:page])
+    if current_user.vendor?
+        @microposts = @user.microposts.paginate(page: params[:page])
+    end
     @markets = @user.markets.paginate(page: params[:page])
   end
 
@@ -50,23 +53,33 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user=User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user) || current_user.admin?
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to users_url
   end
 
   def following
-    @title = "Following"
-    @user  = User.find(params[:id])
-    @users = @user.following.paginate(page: params[:page])
-    render 'show_follow'
+    if current_user.vendor?
+        @title = "Following"
+        @user  = User.find(params[:id])
+        if @user.vendor?
+            @users = @user.following.paginate(page: params[:page])
+        end
+        render 'show_follow'
+     end
   end
 
   def followers
-    @title = "Followers"
-    @user  = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
-    render 'show_follow'
+    if current_user.vendor?
+        @title = "Followers"
+        @user  = User.find(params[:id])
+        if @user.vendor?
+            @users = @user.followers.paginate(page: params[:page])
+        end
+        render 'show_follow'
+    end
   end
 
   def followingmarkets
@@ -82,23 +95,29 @@ class UsersController < ApplicationController
 
   def addbudget
     @user = User.find(params[:id])
-    if @user.budget <150
-        @user.budget+=50
-        @user.update_attribute(:budget, @user.budget)
-        flash[:success] = "Increased credit"
-    else
-        flash[:warning] = "Error! Budget mast be lass then 150 to recharge it"
+    if current_user?(@user) && current_user.buyer?
+        if @user.budget <150
+            @user.budget+=50
+            @user.update_attribute(:budget, @user.budget)
+            flash[:success] = "Increased credit"
+        else
+            flash[:warning] = "Error! Budget mast be lass then 150 to recharge it"
+        end
     end
     redirect_to @user
   end
 
   def description
     @user = User.find(params[:id])
-    if @user.update_attributes(description_param)
-        flash[:success] = "Description updated"
+    if current_user?(@user) && current_user.vendor?
+        if @user.update_attributes(description_param)
+            flash[:success] = "Description updated"
+        end
     end
     redirect_to @user
   end
+
+
 
   private
 

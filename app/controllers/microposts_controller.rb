@@ -3,17 +3,16 @@ class MicropostsController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def create
-    @micropost = current_user.microposts.build(micropost_params)  #Note the use of strong parameters via micropost_params, which permits only the micropost’s content attribute to be modified through the web.
-    if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
-    else
-      @feed_items = []
-      render 'static_pages/home'
+    if current_user.vendor?
+        @micropost = current_user.microposts.build(micropost_params)  #Note the use of strong parameters via micropost_params, which permits only the micropost’s content attribute to be modified through the web.
+        if @micropost.save
+            flash[:success] = "Micropost created!"
+            redirect_to root_url
+        else
+            @feed_items = []
+            render 'static_pages/home'
+        end
     end
-  end
-
-  def destroy
   end
 
   def destroy
