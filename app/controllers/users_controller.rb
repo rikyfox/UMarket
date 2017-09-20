@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       @vendors = User.vendor.paginate(page: params[:page])
     end
     @users = User.paginate(page: params[:page])
-    @chosen_recipient = User.find_by(id: params[:to].to_i) if params[:to]
   end
 
 
@@ -116,8 +115,6 @@ class UsersController < ApplicationController
     end
     redirect_to @user
   end
-
-
 
   private
 

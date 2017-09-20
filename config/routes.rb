@@ -20,7 +20,6 @@ Rails.application.routes.draw do
         get :addbudget
         patch :description
     end
-    post 'search',  :on => :collection
 
   end
 
