@@ -13,24 +13,36 @@
             <%= render 'shared/stats' %>
         </section>
     <% end %>
-    <% if current_user?(@user) && current_user.vendor? %>
-        <%= link_to "Crea negozio", new_user_market_path(@user), class: "btn btn-info" %>
+    <% if logged_in? && current_user?(@user) && current_user.vendor? %>
+        <%= link_to "Create market", new_user_market_path(@user), class: "btn btn-info" %>
         <% end %>
     <% if logged_in? && current_user?(@user) && !current_user.admin? %>
      <%= link_to "Delete me from U-MK", @user, class: 'btn btn-danger', method: :delete,
                                   data: { confirm: "You sure?" } %>
     <% end %>
-    <% if current_user?(@user) && current_user.vendor? %>
+     
+    <% if logged_in? && current_user?(@user) && current_user.vendor? %>
+		 <section>
+			<%= form_tag("/search", method: "get") do %>
+				<%= label_tag(:q, "Search for:") %>
+				<%= text_field_tag(:q) %>
+				<%= submit_tag("Search", class: "btn btn-success btn-block")  %>
+			<% end %>
+		</section>
         <section class="description_form">
             <%= render 'description_form' %>
         </section>
+    
     <% end %>
+ 
 
   </aside>
 
 
   <div class="col-md-8">
-    <p> <mark><%= @user.description %></mark> </p>
+	<% if logged_in? && current_user.vendor? %>
+		<p><mark><%=@user.description %></mark></p>
+    <% end %>
     <% if logged_in? && current_user.vendor? %>
         <%= render 'follow_form' if logged_in? %>
     <% end %>
@@ -59,9 +71,14 @@
     <% end %>
 
     <% if logged_in? && current_user.buyer? && current_user?(@user) %>
-     <h3>Budget: <%= @user.budget %></h3>
-     <%= button_to 'Ricarica credito', addbudget_user_path(@user), :method => :get, class: "btn btn-default btn-block" %>
-    <% end %>
+		<h3>Budget: <mark><%= @user.budget %> coins<mark></h3>
+		<%= button_to 'Recharge credit', addbudget_user_path(@user), :method => :get, class: "btn btn-default btn-block" %>
+		<%= form_tag("/search", method: "get") do %>
+			<%= label_tag(:q, "Search for:") %>
+			<%= text_field_tag(:q) %>
+			<%= submit_tag("Search", class: "btn btn-primary btn-block")  %>
+		<% end %>
+	<% end %>
 
 
   </div>

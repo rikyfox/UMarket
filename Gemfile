@@ -21,6 +21,10 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+  gem 'rspec-rails'
 end
 
 group :development do

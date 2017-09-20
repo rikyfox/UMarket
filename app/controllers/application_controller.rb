@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  before_filter :mailer_set_url_options
+  before_action :mailer_set_url_options
 
   protect_from_forgery with: :exception
   include SessionsHelper   # by including the module into the Application controller we arrange to make them available in our controllers as well

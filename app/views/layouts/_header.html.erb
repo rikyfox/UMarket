@@ -1,17 +1,26 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "U-MK make your business", root_path, id: "logo" %>
+	<% if !logged_in?%>
+		<%= link_to "U-MK make your business", root_path, id: "logo" %>
+	<% end %>
+	<% if logged_in? && current_user.vendor?%>
+		<%= link_to "U-MK make your business", root_path, id: "logo" %>
+    <% end %>
+    <% if logged_in? && current_user.buyer?%>
+		<%= link_to "U-MK make your business", "#", id: "logo" %>
+    <% end %>
+    
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to "Hello, #{current_user.name}!", "#" %></li>
 		  <% if current_user.vendor? %>
-			<li><%= link_to "Bacheca", current_user %></li>
-            <li><%= link_to "Messaggi", mailbox_inbox_path %></li>
-            <li><%= link_to "Venditori", users_path %></li>
+			<li><%= link_to "Showcase", current_user %></li>
+            <li><%= link_to "Messages", mailbox_inbox_path %></li>
+            <li><%= link_to "Vendors", users_path %></li>
 		  <% else %>
-			<li><%= link_to "Negozi", followingmarkets_user_path(current_user) %></li>
-            <li><%= link_to "Carrello", "#"  %></li>
+			<li><%= link_to "Markets", followingmarkets_user_path(current_user) %></li>
+            <li><%= link_to "Shopping Cart", "#"  %></li>
 		  <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -19,7 +28,7 @@
             </a>
             <ul class="dropdown-menu">
               <% if current_user.buyer? %>
-                <li><%= link_to "Profilo", current_user %></li>
+                <li><%= link_to "Profile", current_user %></li>
               <% end %>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
