@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :logged_in_user
   before_action :get_mailbox
-
+  before_action :vendor_user
 
   def new
     @chosen_recipient = User.find_by(id: params[:to].to_i) if params[:to]
@@ -56,5 +56,6 @@ class ConversationsController < ApplicationController
   def get_mailbox
     @mailbox ||= current_user.mailbox
   end
+  
 
 end

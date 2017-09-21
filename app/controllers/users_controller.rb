@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]   # we restrict the filter to act only on the :index, :edit, :update and :destroy
                                                                             # actions by passing the appropriate only: options hash.
 
-  before_action :correct_user,   only: [:edit, :update]     # thanks to correct_user before filter (that defines the @user variable), we can
-                                                            # omit the @user assignments in the edit and update actions.
-  #before_action :admin_user,     only: :destroy
+  before_action :correct_user,   only: [:edit, :update, :addbudget]     # thanks to correct_user before action (that defines the @user variable), we can
+                                                                        # omit the @user assignments in the edit, update and addbudget actions.
+  before_action :buyer_user,     only: :addbudget
 
 
   def index
@@ -17,11 +17,15 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = User.find(params[:id])      # we’ve used params to retrieve the user id
-    if current_user.vendor?
-        @microposts = @user.microposts.paginate(page: params[:page])
-    end
-    @markets = @user.markets.paginate(page: params[:page])
+	@user = User.find(params[:id])      # we’ve used params to retrieve the user id
+	if !current_user.admin?
+		if current_user.vendor?
+			@microposts = @user.microposts.paginate(page: params[:page])
+		end
+		@markets = @user.markets.paginate(page: params[:page])
+	else	
+		@users = User.paginate(page: params[:page])
+	end
   end
 
   def new
@@ -93,8 +97,6 @@ class UsersController < ApplicationController
   end
 
   def addbudget
-    @user = User.find(params[:id])
-    if current_user?(@user) && current_user.buyer?
         if @user.budget <150
             @user.budget+=50
             @user.update_attribute(:budget, @user.budget)
@@ -102,7 +104,6 @@ class UsersController < ApplicationController
         else
             flash[:warning] = "Error! Budget mast be lass then 150 to recharge it"
         end
-    end
     redirect_to @user
   end
 
@@ -135,8 +136,4 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)  # equivalent to redirect_to(root_url) unless @user == current_user
     end
 
-    # Confirms an admin user.
-    #def admin_user
-    #  redirect_to(root_url) unless current_user.admin?
-    #end
 end

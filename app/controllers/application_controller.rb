@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
+    
+    #Confirms a vendor user.
+    def vendor_user
+      redirect_to(root_url) unless current_user.vendor?
+    end
+    
+    #Confirms a buyer user.
+    def buyer_user
+      redirect_to(root_url) unless current_user.buyer?
+    end
 
     private
 

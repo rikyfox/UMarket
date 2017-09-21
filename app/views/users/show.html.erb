@@ -1,5 +1,19 @@
 <% provide(:title, @user.name) %>
-<div class="row">
+<% if current_user.admin? %>
+    <h1>All users</h1>
+
+    <%= will_paginate %>
+
+    <ul class="users">
+        <% @users.each do |user| %>
+            <%= render user %>
+        <% end %>
+    </ul>
+
+    <%= will_paginate %>
+<% else %>
+
+<div class="row">	
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
@@ -22,13 +36,13 @@
     <% end %>
      
     <% if logged_in? && current_user?(@user) && current_user.vendor? %>
-		 <section>
+		 <p>
 			<%= form_tag("/search", method: "get") do %>
 				<%= label_tag(:q, "Search for:") %>
 				<%= text_field_tag(:q) %>
 				<%= submit_tag("Search", class: "btn btn-success btn-block")  %>
 			<% end %>
-		</section>
+		</p>
         <section class="description_form">
             <%= render 'description_form' %>
         </section>
@@ -41,7 +55,7 @@
 
   <div class="col-md-8">
 	<% if logged_in? && current_user.vendor? %>
-		<p><mark><%=@user.description %></mark></p>
+		<section><mark><%=@user.description %></mark></section>
     <% end %>
     <% if logged_in? && current_user.vendor? %>
         <%= render 'follow_form' if logged_in? %>
@@ -86,4 +100,6 @@
 
 
 </div>
+<% end %>
+
 
