@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'acts_as_shopping_cart', '~> 0.4.0'
+gem 'rb-readline'
 gem 'rails',                   '5.0.3'
 gem 'bcrypt',                  '3.1.11'
 gem 'faker',                   '1.7.3'
@@ -57,4 +59,3 @@ gem 'chosen-rails'
 gem 'jquery-turbolinks'
 
 gem 'foundation-rails'
-
