@@ -5,10 +5,12 @@ class ShoppingCartController < ApplicationController
  def show
    @user = User.find(params[:user_id])
    @cart = ShoppingCart.find(params[:id])
-
  end
 
-
+ def remove
+   @user = User.find(params[:user_id])
+   @cart = ShoppingCart.find(params[:id])
+   @
   def add_article
     #@cart = ShoppingCart.find(params[:id])
     @cart = ShoppingCart.create
