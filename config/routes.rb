@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'shopping_cart/show'
+  get 'shopping_cart/add_article'
   root 'static_pages#home'
   get  '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'         #page for a new session (login)

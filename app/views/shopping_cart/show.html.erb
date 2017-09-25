@@ -1,0 +1,20 @@
+<h1>ShoppingCart#show</h1>
+<p>Find me in app/views/shopping_cart/show.html.erb</p>
+<% if @items != nil  %>
+  <% @items.each do |elem|   %>
+  <!-- ogni elem è solo riferim -->
+    <h2> numero del riferimento <%= elem.id %></h2>
+    <h2> quantita <%= elem.quantity %></h2>
+    <h4><%= Article.find(elem.item_id).name %></h4><br />
+    <% end %>
+  <% end %>
+<h1>
+anche se riaggiungo rimane sempre constante il numero
+cambia la quantità?
+  < ------ >
+  aumenta sempre...
+</h1>
+
+<div class='set blue'>
+  <%= link_to 'add_article', shopping_cart_add_article_path(),  class: "btn sec" %>
+</div>
