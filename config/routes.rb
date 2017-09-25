@@ -8,17 +8,17 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'     #delete a session (log out)
   get 	'search', to: 'static_pages#search'
 
+  #dipendenza carrello  / action_user_shopping_cart_shopping_cart_item_path()
+   resources :users do
+      resources :shopping_cart
+    end
+
 
   resources :users do
     resources :markets do
 		resources :articles
 	end
-#dipendenza carrello  / action_user_shopping_cart_shopping_cart_item_path()
- resources :users do
-    resources :shopping_cart do
-     resources :shopping_cart_items
-   end
-  end
+
 
 
     member do
