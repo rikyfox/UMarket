@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   	@user=User.find(params[:user_id])
 	@market = @user.markets.find(params[:market_id])
 	@article = @market.articles.build(article_params)
-	
+
    if @article.save && @market.save
         flash[:success] = "Article created!"
         redirect_to user_market_path(@user, @market) 	#user_market_article_path(@user, @market, @article)
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
         redirect_to @user
     end
   end
-  
+
   def edit
 	@user=User.find(params[:user_id])
 	@market = @user.markets.find(params[:market_id])
@@ -35,12 +35,12 @@ class ArticlesController < ApplicationController
 		redirect_to current_user
 	end
   end
-  
+
   def update
 	@user=User.find(params[:user_id])
 	@market = @user.markets.find(params[:market_id])
 	@article =@market.articles.find(params[:id])
-	
+
     if @article.update_attributes(article_params)
       flash[:success] = "Article updated"
       redirect_to user_market_path(@user, @market)
@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
     end
 
   end
-  
+
   def destroy
 	@user=User.find(params[:user_id])
 	@market=@user.markets.find(params[:market_id])
@@ -57,15 +57,18 @@ class ArticlesController < ApplicationController
 	flash[:success] = "Article deleted"
    redirect_to user_market_path(@user, @market)
   end
-  
+
    def show
     @user = User.find(params[:user_id])
 	@market = @user.markets.find(params[:market_id])
 	@article = @market.articles.find(params[:id])
+  # DA ELIMINARE
+  @cart = ShoppingCart.create
+  #-----
   end
-  
-  private 
-  
+
+  private
+
   def article_params
         params.require(:article).permit(:name, :prezzo, :description, :status, :picture)  # list of attributes permitted to be modified through the web
     end

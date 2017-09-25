@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 			@microposts = @user.microposts.paginate(page: params[:page])
 		end
 		@markets = @user.markets.paginate(page: params[:page])
-	else	
+	else
 		@users = User.paginate(page: params[:page])
 	end
   end
@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)           # see below the user_params method
+    @user.shopping_cart = ShoppingCart.create
     if @user.save
         log_in @user
         flash[:success] = "Welcome to UMarket!"
