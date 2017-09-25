@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #dipendenza carrello  / action_user_shopping_cart_shopping_cart_item_path()
    resources :users do
       resources :shopping_cart do
-        resources :shopping_cart_items
+        resources :shopping_cart_item
     end
   end
 

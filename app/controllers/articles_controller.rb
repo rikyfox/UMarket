@@ -62,9 +62,6 @@ class ArticlesController < ApplicationController
     @user = User.find(params[:user_id])
 	@market = @user.markets.find(params[:market_id])
 	@article = @market.articles.find(params[:id])
-  # DA ELIMINARE
-  @cart = ShoppingCart.create
-  #-----
   end
 
   private

@@ -33,8 +33,11 @@
 										</div>
 									</li>
 						  <% if @article.status %>
-                  <!--  FORM_ADD_to  -->
-							  <%= render 'add_form' %>
+									<li>
+											<div class='set green'>
+									<%= link_to "ADD to SCart", edit_user_shopping_cart_shopping_cart_item_path(@current_user,@current_user.shopping_cart_id, @article.id) ,class: "btn pri ico" %>
+									    </div>
+										</li>
 							</ul>
 				 			       <% end %>
 				      <% end %>

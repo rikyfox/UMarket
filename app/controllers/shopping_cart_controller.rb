@@ -7,25 +7,6 @@ class ShoppingCartController < ApplicationController
    @cart = ShoppingCart.find(params[:id])
  end
 
- def remove
-   @user = User.find(params[:user_id])
-   @cart = ShoppingCart.find(params[:id])
-   @
-  def add_article
-    #@cart = ShoppingCart.find(params[:id])
-    @cart = ShoppingCart.create
-    @quantita = params[:quantity]
-    @article = Article.find(params[:article])
-    @price = params[:price]
-    if @cart.add(shopping_cart_params)
-      flash[:success] = "articolo aggiunto nel carrello!"
-    else
-      flash[:warning] = "error-add_article"
-    end
-  end
-
-
-
   private
   def shopping_cart_params
     params.require(:cart).permit(:article,:price,:quantity)
