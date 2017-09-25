@@ -34,7 +34,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)           # see below the user_params method
-    @user.shopping_cart = ShoppingCart.create
+    if @user.role == "buyer"
+      sc = ShoppingCart.create
+      @user.shopping_cart_id = sc.id
+    else
+      @user.shopping_cart = nil
+    end
     if @user.save
         log_in @user
         flash[:success] = "Welcome to UMarket!"

@@ -1,10 +1,4 @@
 class ShoppingCartController < ApplicationController
-# da chiamare quando si crea un user e da collegare con
-# un migrate agli user
-  def create
-    @cart = ShoppingCart.create
-  end
-#---
 
 
   def add_article
