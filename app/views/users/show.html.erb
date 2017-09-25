@@ -13,13 +13,13 @@
     <%= will_paginate %>
 <% else %>
 
-<div class="row">	
+<div class="row">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
-		<%= @user.role %>
+		 |  <%= @user.role %>
       </h1>
     </section>
     <% if current_user.vendor? %>
@@ -34,7 +34,7 @@
      <%= link_to "Delete me from U-MK", @user, class: 'btn btn-danger', method: :delete,
                                   data: { confirm: "You sure?" } %>
     <% end %>
-     
+
     <% if logged_in? && current_user?(@user) && current_user.vendor? %>
 		 <p>
 			<%= form_tag("/search", method: "get") do %>
@@ -46,9 +46,9 @@
         <section class="description_form">
             <%= render 'description_form' %>
         </section>
-    
+
     <% end %>
- 
+
 
   </aside>
 
@@ -67,7 +67,7 @@
 
 
     <% if @user.markets.any? %>
-      <h3>Negozi (<%= @user.markets.count %>)</h3>
+      <h3>Markets (<%= @user.markets.count %>)</h3>
       <ol class="markets">
         <%= render @markets %>
       </ol>

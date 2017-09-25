@@ -1,7 +1,7 @@
 <li>
   <%= link_to market.name, user_market_path(market.user, market) %>
   <% if current_user?(market.user) %>
-      <%= link_to "delete", [@user, market], method: :delete,
+   |   <%= link_to "delete", [@user, market], method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
 </li>
