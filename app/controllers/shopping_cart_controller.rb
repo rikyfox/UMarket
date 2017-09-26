@@ -7,9 +7,4 @@ class ShoppingCartController < ApplicationController
    @cart = ShoppingCart.find(params[:id])
  end
 
-  private
-  def shopping_cart_params
-    params.require(:cart).permit(:article,:price,:quantity)
-  end
-
 end
