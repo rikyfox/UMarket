@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
 
 
+  get 'reviews/create'
+
+  get 'reviews/destroy'
+
   root 'static_pages#home'
   get  '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'         #page for a new session (login)
