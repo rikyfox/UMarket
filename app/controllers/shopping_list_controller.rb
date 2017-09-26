@@ -21,7 +21,7 @@ class ShoppingListController < ApplicationController
           @cart.shopping_cart_items.each do |elem|
             art = Article.find(elem.item_id)
             qty = elem.quantity
-            @list.add(art , qty)#agg a lista di comprati
+            @list.add(art , art.prezzo , qty)#agg a lista di comprati
             @cart.remove(art , qty)
           end
           flash[:success] = "il tuo ordine è stato completato!!"
