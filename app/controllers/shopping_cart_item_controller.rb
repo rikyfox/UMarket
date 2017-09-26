@@ -1,5 +1,7 @@
 class ShoppingCartItemController < ApplicationController
 
+  before_action  :logged_in_user , :buyer_user 
+
   def edit
     @user = User.find(params[:user_id])
     @cart = ShoppingCart.find(params[:shopping_cart_id])
@@ -27,5 +29,7 @@ class ShoppingCartItemController < ApplicationController
     end
     redirect_to user_shopping_cart_path(@user,@cart)
   end
+
+
 
 end

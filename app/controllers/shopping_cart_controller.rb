@@ -7,4 +7,25 @@ class ShoppingCartController < ApplicationController
    @cart = ShoppingCart.find(params[:id])
  end
 
+ def edit #clear SCart
+   @user = User.find(params[:user_id])
+   @cart = ShoppingCart.find(params[:id])
+   @cart.clear
+   flash[:success] = "carrello svuotato"
+   redirect_to user_shopping_cart_path(@user,@cart)
+ end
+
+  def destroy #buy SCart
+    @user = User.find(params[:user_id])
+    @cart = ShoppingCart.find(params[:id])
+    
+    redirect_to user_shopping_cart_path(@user,@cart)
+  end
+
+
+ private
+   def crr_user
+     redirect_to(root_url) unless @user == current_user
+   end
+
 end

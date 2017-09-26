@@ -41,14 +41,24 @@
                         </li>
                       </ul>
                     </div>
+									<hr />
                   <% end %>
                   </div>
+										<div class='set black'>
+											<%= link_to "CLEAR_CART", edit_user_shopping_cart_path(@current_user,@current_user.shopping_cart_id),
+											data: {confirm: "Your sure?" } , class: "btn pri ico" %>
+										 </div>
+										<div class='set green'>
+											<%= link_to "BUY", user_shopping_cart_path(@current_user,@current_user.shopping_cart_id),
+											method: :delete, class: "btn pri ico" %>
+										 </div>
                 </div>
         <% else %>
         <h2>-------------------------------------</h2>
         <h2>non hai ancora artioli nel carrello!!</h2>
         <h2>-------------------------------------</h2>
         <% end %>
+
       </div>
     </div>
   </div>
