@@ -1,8 +1,8 @@
 class ShoppingCartItemController < ApplicationController
 
-  before_action  :logged_in_user , :buyer_user 
+  before_action  :logged_in_user , :buyer_user
 
-  def edit
+  def edit #add
     @user = User.find(params[:user_id])
     @cart = ShoppingCart.find(params[:shopping_cart_id])
     #passo un riferimento = è solo wrapper   (article.id == params[:id])
@@ -17,7 +17,7 @@ class ShoppingCartItemController < ApplicationController
     redirect_to user_market_article_path(Market.find(market).user_id,@article.market_id, @article)
   end
 
-  def destroy
+  def destroy  #remove
     @user = User.find(params[:user_id])
     @cart = ShoppingCart.find(params[:shopping_cart_id])
     #passo un riferimento = è solo wrapper   (article_id == params[:id])
