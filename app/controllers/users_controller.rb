@@ -36,9 +36,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)           # see below the user_params method
     if @user.role == "buyer"
       sc = ShoppingCart.create
+      sl = ShoppingList.create
       @user.shopping_cart_id = sc.id
+      @user.shopping_list_id = sl.id
     else
       @user.shopping_cart = nil
+      @user.shopping_list = nil
     end
     if @user.save
         log_in @user
