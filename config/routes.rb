@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'     #delete a session (log out)
   get 	'search', to: 'static_pages#search'
 
+#dipendenza recensioni con articoli
+  resources :articles do
+    resources :review
+  end
 # dipendenza lista di oggetti comprati
   resources :users do
       resources :shopping_list

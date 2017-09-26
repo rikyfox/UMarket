@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+  has_many  :reviews
   belongs_to :market
   validates :market_id, presence: true
 
@@ -8,7 +9,7 @@ class Article < ApplicationRecord
   validates :status, inclusion: [true, false]
   mount_uploader :picture, PictureUploader
   validate  :picture_size
-  
+
     private
 
     # Validates the size of an uploaded picture.
