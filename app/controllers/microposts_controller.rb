@@ -8,7 +8,7 @@ class MicropostsController < ApplicationController
         @micropost = current_user.microposts.build(micropost_params)  #Note the use of strong parameters via micropost_params, which permits only the micropost’s content attribute to be modified through the web.
         if @micropost.save
             flash[:success] = "Micropost created!"
-            redirect_to root_url
+            redirect_to root_url # == static_pages/home
         else
             @feed_items = []
             render 'static_pages/home'
@@ -32,5 +32,5 @@ class MicropostsController < ApplicationController
       @micropost = current_user.microposts.find_by(id: params[:id])
       redirect_to root_url if @micropost.nil?
     end
-    
+
 end
