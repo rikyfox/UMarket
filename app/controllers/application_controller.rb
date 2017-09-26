@@ -16,6 +16,13 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    # Confirms the correct user.
+    def correct_user_S
+      @user = User.find(params[:user_id])
+      redirect_to(root_url) unless current_user?(@user)  # equivalent to redirect_to(root_url) unless @user == current_user
+    end
+
+
     #Confirms a vendor user.
     def vendor_user
       redirect_to(root_url) unless current_user.vendor?

@@ -1,6 +1,6 @@
 class ShoppingCartController < ApplicationController
 
- before_action  :logged_in_user , :buyer_user
+ before_action  :logged_in_user , :buyer_user , :correct_user_S
 
  def show
    @user = User.find(params[:user_id])
