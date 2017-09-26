@@ -4,10 +4,19 @@ id =>  <%= @user.id %> <br />
 <% if @cart.shopping_cart_items.any?  %>
   <% @cart.shopping_cart_items.each do |elem|   %>
     <!-- ogni elem è solo riferim -->
-    <h2> numero del riferimento(scItem) <%= elem.id %></h2><br/>
-    <h4>articolo_id <%= Article.find(elem.item_id) %></h4><br />
-    <h4>nome dell'articolo <%= Article.find(elem.item_id).name %></h4><br />
-    <h4> quantita <%= elem.quantity %></h4><br/>
+    <h1> numero del riferimento Item->Art
+      <br />(.....elem.id)
+      <br /><%= elem.id %></h1><br/>
+    <h4>articolo_id (item_id)<%= Article.find(elem.item_id) %></h4><br />
+    <h4>nome dell'articolo//find(item_id).name-><%= Article.find(elem.item_id).name %></h4><br />
+    <h4> quantita-><%= elem.quantity %></h4><br/>
+    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+    <li><div class='set red'>
+
+      <%= link_to "Delete-art", user_shopping_cart_shopping_cart_item_path(@current_user,@current_user.shopping_cart_id,
+      Article.find(elem.item_id)), method: :delete, data: { confirm: "You sure?" }, class: "btn pri ico" %>
+
+    </li></ul>
     <% end %>
   <% else %>
   <h1>NO articoli!!</h1>
