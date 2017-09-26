@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925212735) do
+ActiveRecord::Schema.define(version: 20170926034224) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "name"
@@ -151,6 +151,23 @@ ActiveRecord::Schema.define(version: 20170925212735) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shopping_list_items", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "quantity"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "price_cents",    default: 0,     null: false
+    t.string   "price_currency", default: "USD", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "shopping_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -162,8 +179,10 @@ ActiveRecord::Schema.define(version: 20170925212735) do
     t.integer  "budget",           default: 150, null: false
     t.text     "description"
     t.integer  "shopping_cart_id"
+    t.integer  "shopping_list_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["shopping_cart_id"], name: "index_users_on_shopping_cart_id"
+    t.index ["shopping_list_id"], name: "index_users_on_shopping_list_id"
   end
 
 end

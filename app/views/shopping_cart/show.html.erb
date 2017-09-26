@@ -49,8 +49,7 @@
 											data: {confirm: "Your sure?" } , class: "btn pri ico" %>
 										 </div>
 										<div class='set green'>
-											<%= link_to "BUY", user_shopping_cart_path(@current_user,@current_user.shopping_cart_id),
-											method: :delete, class: "btn pri ico" %>
+											<%= link_to "BUY", edit_user_shopping_list_path(@current_user,@current_user.shopping_cart_id),class: "btn pri ico" %>
 										 </div>
                 </div>
         <% else %>

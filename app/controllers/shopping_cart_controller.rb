@@ -15,14 +15,5 @@ class ShoppingCartController < ApplicationController
    redirect_to user_shopping_cart_path(@user,@cart)
  end
 
-  def destroy #buy SCart
-    @user = User.find(params[:user_id])
-    @cart = ShoppingCart.find(params[:id])
-
-    redirect_to user_shopping_cart_path(@user,@cart)
-  end
-
-
- 
 
 end

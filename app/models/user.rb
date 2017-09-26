@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
   enum role: [:buyer, :vendor, :admin]
   has_one  :shopping_cart
+  has_many :shopping_lists
   has_many :assignments
   has_many :roles, through: :assignments
   has_many :markets, dependent: :destroy
