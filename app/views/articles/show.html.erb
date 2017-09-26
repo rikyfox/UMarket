@@ -34,10 +34,7 @@
 									</li>
 						  <% if @article.status %>
 									<li>
-											<div class='set green'>
-												@current_user.name// <%=@current_user%><br />
-												@current_user.shopping_cart_id// <%=@current_user.shopping_cart_id %><br />
-												@article// <%=@article%> <br />
+											<div class='set green'>												
 									<%= link_to "ADD to SCart", edit_user_shopping_cart_shopping_cart_item_path(@current_user,@current_user.shopping_cart_id, @article) ,class: "btn pri ico" %>
 									    </div>
 										</li>

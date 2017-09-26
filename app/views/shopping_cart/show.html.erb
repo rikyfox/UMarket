@@ -1,23 +1,55 @@
-<h1>ShoppingCart</h1>
-proprietario=> <%= @user.name %>  <br />
-id =>  <%= @user.id %> <br />
-<% if @cart.shopping_cart_items.any?  %>
-  <% @cart.shopping_cart_items.each do |elem|   %>
-    <!-- ogni elem è solo riferim -->
-    <h1> numero del riferimento Item->Art
-      <br />(.....elem.id)
-      <br /><%= elem.id %></h1><br/>
-    <h4>articolo_id (item_id)<%= Article.find(elem.item_id) %></h4><br />
-    <h4>nome dell'articolo//find(item_id).name-><%= Article.find(elem.item_id).name %></h4><br />
-    <h4> quantita-><%= elem.quantity %></h4><br/>
-    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-    <li><div class='set red'>
-
-      <%= link_to "Delete-art", user_shopping_cart_shopping_cart_item_path(@current_user,@current_user.shopping_cart_id,
-      Article.find(elem.item_id)), method: :delete, data: { confirm: "You sure?" }, class: "btn pri ico" %>
-
-    </li></ul>
-    <% end %>
-  <% else %>
-  <h1>NO articoli!!</h1>
-  <% end %>
+<% provide(:title, @user.name + "'s ShoppingCart") %>
+<div class="container-fluid" style="background-color:#e8e8e8">
+	<div class="container container-pad" id="property-listings">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>ShoppingCart di <%= @user.name%> </h1>
+        <% if @cart.shopping_cart_items.any?  %>
+        <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+            <div class="media">
+              <% @cart.shopping_cart_items.each do |elem| %>
+                  <a class="pull-left" href="#" target="_parent">
+                       <%= image_tag Article.find(elem.item_id).picture.url,
+                       class: "img-responsive",
+                         size:"150x150" if Article.find(elem.item_id).picture? %>
+                         </a>
+                        <div class="clearfix visible-sm"></div>
+                  <div class="media-body fnt-smaller">
+                      <a href="#" target="_parent"></a>
+                          <h3 class="media-heading">
+                            <b><%= Article.find(elem.item_id).name %></b>
+                          </h3>
+                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Prezzo:</li>
+                            <li><%= Article.find(elem.item_id).prezzo %></li>
+                          </ul>
+                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                            <li>Quantita:</li>
+                            <li><%= elem.quantity %></li>
+                          </ul>
+                      <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                        <li>
+                          <div class='set blue'>
+                          <%= link_to "Visit", user_market_article_path(Article.find(elem.item_id).market.user, Article.find(elem.item_id).market,Article.find(elem.item_id)), class: "btn pri ico" %>
+                          </div>
+                        </li>
+                        <li>
+                          <div class='set red'>
+                            <%= link_to "Delete", user_shopping_cart_shopping_cart_item_path(@current_user,@current_user.shopping_cart_id,
+                            Article.find(elem.item_id)), method: :delete, data: { confirm: "You sure?" }, class: "btn pri ico" %>
+                           </div>
+                        </li>
+                      </ul>
+                    </div>
+                  <% end %>
+                  </div>
+                </div>
+        <% else %>
+        <h2>-------------------------------------</h2>
+        <h2>non hai ancora artioli nel carrello!!</h2>
+        <h2>-------------------------------------</h2>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
