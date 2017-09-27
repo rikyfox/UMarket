@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-
-  get 'reviews/create'
-
-  get 'reviews/destroy'
-
   root 'static_pages#home'
   get  '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'         #page for a new session (login)
@@ -14,10 +7,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'     #delete a session (log out)
   get 	'search', to: 'static_pages#search'
 
-#dipendenza recensioni con articoli
-  resources :articles do
-    resources :review
-  end
+
 # dipendenza lista di oggetti comprati
   resources :users do
       resources :shopping_list
@@ -50,6 +40,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :reviews,             only: [:create, :destroy]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
   resources :followmarkets,       only: [:create, :destroy]

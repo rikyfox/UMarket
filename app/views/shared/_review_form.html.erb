@@ -1,0 +1,10 @@
+<%= simple_form_for (@review) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose new review..." %>
+    <%= f.hidden_field(:id, :value=> @review.id) %>
+    <%= f.hidden_field(:article_id, :value=> @article.id) %>
+    <%= f.hidden_field(:user_id, :value=> @current_user) %>
+  </div>
+  <%= f.submit "Post_review", class: "btn btn-primary" %>
+<% end %>

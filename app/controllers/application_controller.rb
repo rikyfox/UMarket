@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def correct_user_R
+      @review = current_user.reviews.find_by(id: params[:id])
+      redirect_to root_url if @review.nil?
+    end
+
     # Confirms the correct user.
     def correct_user_S
       @user = User.find(params[:user_id])

@@ -1,0 +1,14 @@
+<li>
+  <%= link_to gravatar_for(@usRev, size: 50), @usRev %>
+  <span class="user"><%= link_to @usRev.name, @usrev %></span>
+  <span class="content">
+    <%= @elem.content %>
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(@elem.created_at) %> ago.
+    <% if current_user?(@usRev) %>
+      <%= link_to "delete", @elem, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+                                       <% end %>
+  </span>
+</li>
