@@ -45,6 +45,7 @@
 							<h5>------------------------------------</h5>
 							<h4>registrati o effettua il login</h4>
 							<h4>per commentare o comprare l'articolo</h4>
+							<h5>------------------------------------</h5>
 				<%end %>
 				<h2>Reviews</h2>
 					<% Review.all.each do |f| %>
@@ -53,7 +54,7 @@
 							<% @usRev  = User.find(@elem.user_id) %>
 								<ol class="microposts">
 										<%= render @elem %>
-									</ol>																	
+									</ol>
 						<% end %>
 				<% end %>
 			</div>

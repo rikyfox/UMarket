@@ -62,7 +62,9 @@ class ArticlesController < ApplicationController
   @user = User.find(params[:user_id])
 	@market = @user.markets.find(params[:market_id])
 	@article = @market.articles.find(params[:id])
-  @review = current_user.reviews.build
+  if  logged_in? && @current_user.buyer? 
+    @review = current_user.reviews.build
+  end
   #pre-alloco risorsa x 'shared/review_form'
   end
 
