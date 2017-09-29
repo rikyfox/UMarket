@@ -59,3 +59,5 @@ gem 'chosen-rails'
 gem 'jquery-turbolinks'
 
 gem 'foundation-rails'
+
+gem 'shareable'

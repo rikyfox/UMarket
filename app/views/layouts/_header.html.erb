@@ -1,16 +1,14 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-	<% if !logged_in?%>
-		<%= link_to "U-MK make your business", root_path, id: "logo" %>
-	<% end %>
-	<% if logged_in? && current_user.vendor?%>
-		<%= link_to "U-MK make your business", root_path, id: "logo" %>
+    <% if logged_in? %>
+        <% if !current_user.admin? %>
+            <%= link_to "U-MK make your business", root_path, id: "logo" %>
+        <% else %>
+            <%= link_to "U-MK make your business", "#", id: "logo" %>
+        <% end %>
+    <% else %>
+        <%= link_to "U-MK make your business", root_path, id: "logo" %>
     <% end %>
-    <% if logged_in? && (current_user.buyer? || current_user.admin?)%>
-		<%= link_to "U-MK make your business", "#", id: "logo" %>
-    <% end %>
-
-
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
@@ -18,7 +16,7 @@
           <li><%= link_to "Hello, #{current_user.name}!", "#" %></li>
 		  <% if current_user.vendor? %>
 			      <li><%= link_to "Home", current_user %></li>
-            <li><%= link_to "Micropost", root_path %></li>
+            <li><%= link_to "Microposts", root_path %></li>
             <li><%= link_to "Messages", mailbox_inbox_path %></li>
             <li><%= link_to "Vendors", users_path %></li>
 		  <% else %>

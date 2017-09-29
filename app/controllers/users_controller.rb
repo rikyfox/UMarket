@@ -66,12 +66,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user=User.find(params[:id])
+    name=@user.name
     redirect_to(root_url) unless current_user?(@user) || current_user.admin?
 # ISTRUZIONE DA PROVARE
     ShoppingCart.find(@user.shopping_cart_id).destroy
 #------------------------
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "User "+name+" deleted"
     redirect_to users_url
   end
 

@@ -11,10 +11,10 @@ Then(/^I sign up as "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)" on the sig
 	page.fill_in 'Password confirmation',:with =>arg4
 	page.choose('user_role_'+arg5)
 	click_button("Create User")
+	assert_current_path(user_path(User.last))
 end
 
 Then(/^I should see "([^"]*)"$/) do |arg1|
-  assert_current_path(user_path(User.last))
   expect(page).to have_content(arg1)
 end
 
