@@ -7,7 +7,7 @@
 				<h3><%= @market.name %></h3>
 
 			    <%= image_tag @article.picture.url, size:"250x250" if @article.picture? %>
-
+                <%= render_shareable %>
 				<div class='set blue'>
 					<%= link_to "Negozio", user_market_path(@user, @market), class: "btn sec" %>
 				</div>
