@@ -44,9 +44,6 @@
 									<hr />
                   <% end %>
                   </div>
-																		<H2>Totale: <%= @cart.total %> USD</H2>
-								<h4> budget_attuale => <%= @user.budget %></h4>
-<h4> budget_post => <%= @user.budget - (@cart.total.fractional * 0.01)%></h4>														    
 										<div class='set black'>
 											<%= link_to "CLEAR_CART", edit_user_shopping_cart_path(@current_user,@current_user.shopping_cart_id),
 											data: {confirm: "Your sure?" } , class: "btn pri ico" %>
@@ -56,9 +53,7 @@
 										 </div>
                 </div>
         <% else %>
-        <h2>-------------------------------------</h2>
         <h2>non hai ancora artioli nel carrello!!</h2>
-        <h2>-------------------------------------</h2>
         <% end %>
 	  	</div>
     </div>

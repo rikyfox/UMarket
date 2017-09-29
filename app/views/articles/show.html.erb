@@ -12,6 +12,11 @@
 				<div class='set blue'>
 					<%= link_to "Negozio", user_market_path(@user, @market), class: "btn sec" %>
 				</div>
+				<% if logged_in? && current_user.buyer? %>
+					 	<section class="micropost_form">
+						 	<%= render 'shared/review_form' %>
+					 	</section>
+				<% end %>
 			</div>
 
 
@@ -34,11 +39,6 @@
 												</div>
 											</li>
 									<% end %>
-						    <li>
-						       <section class="micropost_form">
-										 <%= render 'shared/review_form' %>
-									 </section>
-								 </li>
 							 </ul>
 							 <% end %>
 				<% if !logged_in? %>
