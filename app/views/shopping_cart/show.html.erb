@@ -4,6 +4,7 @@
     <div class="row">
       <div class="col-sm-8">
         <h1>ShoppingCart di <%= @user.name%> </h1>
+				<%= render_shareable :buttons=>['google_plus'] %>
         <% if @cart.shopping_cart_items.any?  %>
         <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
             <div class="media">
