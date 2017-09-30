@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   enum role: [:buyer, :vendor, :admin]
   has_one  :shopping_cart
   has_one  :shopping_list

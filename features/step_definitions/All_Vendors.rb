@@ -1,4 +1,4 @@
-Given(/^some valid user$/) do
+Given(/^some valid users$/) do
 
       @user = User.create!({
 			 :name => "TestVendor",

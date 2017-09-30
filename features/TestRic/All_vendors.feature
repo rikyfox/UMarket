@@ -1,7 +1,7 @@
 Feature: See All vendors
 
 Scenario: vendor user can see all vendor users
-  Given some valid user
+  Given some valid users
   When I go to the login page
   And I login as "vendor@vendor.com","12345678"
   And I click on link "Vendors"
