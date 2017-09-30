@@ -5,7 +5,7 @@
 			<div class="col-md-4">
 				<h1><%= @market.name %></h1>
 				<h3><%= @market.user.name %></h3>
-				<%= render_shareable %>
+				<%= render_shareable :buttons=>['google_plus'] %>
 				<% if logged_in? && current_user.vendor? %>
 					<div class='set blue'>
 						<%= link_to "Bacheca Venditore", @user, class: "btn sec" %>
