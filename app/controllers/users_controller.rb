@@ -69,8 +69,8 @@ class UsersController < ApplicationController
     name=@user.name
     redirect_to(root_url) unless current_user?(@user) || current_user.admin?
     if(@current_user.buyer?)
-      ShoppingCart.find(@user.shopping_cart_id).destroy
-      ShoppingList.find(@user.shopping_list_id).destroy
+      ShoppingCart.find(@current_user.shopping_cart_id).destroy
+      ShoppingList.find(@current_user.shopping_list_id).destroy
     end
     User.find(params[:id]).destroy
     flash[:success] = "User "+name+" deleted"
