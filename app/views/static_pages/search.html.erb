@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-5">
 				
-				<h3>Articoli:</h3>
+				<h3>Articles:</h3>
 
 				<% if @articoli.any? %>
 					<% @articoli.each do |element| %>
@@ -26,14 +26,14 @@
 									</h3>
 										
 									<small class="pull-right">
-										<% if element.status %>Disponibile<% end %>
-										<% if !element.status %>Non Disponibile<% end %>
+										<% if element.status %>Avalaible<% end %>
+										<% if !element.status %>Not Avalaible<% end %>
 									</small>
 
 									<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-										<li>Prezzo:</li>
+										<li>Price:</li>
 										<li><%= element.prezzo %></li>
-										<li>Monete</li>
+										<li>Coins</li>
 									</ul>
 
 									<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
@@ -56,7 +56,7 @@
 			
 			<div class="col-md-5">
 				
-				<h3>Negozi:</h3>
+				<h3>Markets:</h3>
 
 				<% if @negozi.any? %>
 					<% @negozi.each do |element| %>
@@ -75,9 +75,9 @@
 									</h3>
 
 									<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-										<li>Nazione: </li>
+										<li>Nation: </li>
 										<li><%= element.nation %></li>
-										<li>Città: </li>
+										<li>City: </li>
 										<li><%= element.city %></li>
 									</ul>
 

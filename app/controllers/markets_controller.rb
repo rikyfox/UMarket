@@ -21,7 +21,7 @@ class MarketsController < ApplicationController
         redirect_to user_market_path(@user, @market)
     else
      @feed_items = []
-        redirect_to @user
+        redirect_to new_user_market_path(@user)
     end
   end
   

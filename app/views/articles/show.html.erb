@@ -9,23 +9,19 @@
 			    <%= image_tag @article.picture.url, size:"250x250" if @article.picture? %>
                 <%= render_shareable :buttons=>['google_plus'] %>
 				<div class='set blue'>
-					<%= link_to "Negozio", user_market_path(@user, @market), class: "btn sec" %>
+					<%= link_to "Market", user_market_path(@user, @market), class: "btn sec" %>
 				</div>
-				<% if logged_in? && current_user.buyer? %>
-					 	<section class="micropost_form">
-						 	<%= render 'shared/review_form' %>
-					 	</section>
-				<% end %>
+				
 			</div>
 
 
-			<div class="col-md-4">
+			<div class="col-md-8">
 				<h3><b>Info:<b></h3>
 				<span class="content">
-					<h4>Prezzo:</h4> <%= @article.prezzo %></br>
-					<h4>Descrizione articolo:</h4> <%= @article.description %></br>
-					<h4>Stato:</h4> <% if @article.status %>Disponibile<% end %>
-					<% if !@article.status %>Non Disponibile<% end %>
+					<h4>Price:</h4> <%= @article.prezzo %></br>
+					<h4>Description:</h4> <%= @article.description %></br>
+					<h4>Status:</h4> <% if @article.status %>Avalaible<% end %>
+					<% if !@article.status %>Not Avalaible<% end %>
 				</span>
 				<!-- l'utente nn registrato non può aggiungere al carrello se prima nn si è autenticato -->
 
@@ -33,8 +29,8 @@
 							<ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
 								<% if @article.status %>
 										<li>
-												<div class='set green'>
-										<%= link_to "ADD to SCart", edit_user_shopping_cart_shopping_cart_item_path(@current_user,@current_user.shopping_cart_id, @article) ,class: "btn pri ico" %>
+												<div class='set black'>
+										<%= link_to "ADD to SCart", edit_user_shopping_cart_shopping_cart_item_path(@current_user,@current_user.shopping_cart_id, @article) ,class: "btn val1 ico" %>
 												</div>
 											</li>
 									<% end %>
@@ -46,18 +42,44 @@
 							<h4>per commentare o comprare l'articolo</h4>
 							<h5>------------------------------------</h5>
 				<%end %>
-				<h2>Reviews</h2>
+				
+			</div>
+		</div>
+
+		<br></br>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<% if logged_in? && current_user.buyer? %>
+					 	<section class="micropost_form">
+						 	<%= render 'shared/review_form' %>
+					 	</section>
+				<% end %>			
+				
+			</div>
+		</div>
+		
+		<br></br>
+
+				
+		<div class="container">
+			<div class="my">
+				<h1 class="text-center">Reviews:</h1>
+					<div class="list-group">
+						  
 					<% Review.all.each do |f| %>
 						<% if f.article_id == @article.id %>
 							<% @elem = f %>
 							<% @usRev  = User.find(@elem.user_id) %>
 								<ol class="microposts">
 										<%= render @elem %>
-									</ol>
+								</ol>
 						<% end %>
-				<% end %>
+					<% end %>
+				
+					</div>
 			</div>
-		</div>
+		</div>		
 
 	</div>
 </div>

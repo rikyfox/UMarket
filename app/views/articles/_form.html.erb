@@ -6,11 +6,11 @@
   
   
 
-  <%= f.label :prezzo %>
+  <%= f.label :price %>
  <%= f.text_field :prezzo, label_html: { class: 'my_class' }%>
 
   <%= f.label :Status %>:
-  <%= f.collection_radio_buttons :status, [[true, 'Disponibile'] ,[false, 'Non disponibile']],
+  <%= f.collection_radio_buttons :status, [[true, 'Avalaible'] ,[false, 'Not Avalaible']],
                              :first, :last, { item_wrapper_tag: false } %>
 							 </br>
 							 

@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
     else
 		@article.destroy
 		@feed_items = []
-        redirect_to @user
+        redirect_to new_user_market_article_path(@user, @market)
     end
   end
 

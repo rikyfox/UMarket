@@ -1,14 +1,24 @@
 <li>
-  <%= link_to gravatar_for(@usRev, size: 50), @usRev %>
-  <span class="user"><%= link_to @usRev.name, @usrev %></span>
-  <span class="content">
-    <%= @elem.content %>
-  </span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(@elem.created_at) %> ago.
-    <% if current_user?(@usRev) %>
-      <%= link_to "delete", @elem, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-                                       <% end %>
-  </span>
+  <hr class="style5"></hr>
+<div class="row">
+	<div class="media col-md-3">
+		<figure class="pull-left">
+			<%= link_to gravatar_for(@usRev, size: 100), @usRev %>
+		</figure>
+	</div>
+	<div class="col-md-6">
+		<p class="list-group-item-text">  
+			<span class="content">
+				<%= @elem.content %>
+			</span>
+		</p>
+	</div>
+	<div class="col-md-3 text-center">
+		<h2>Buyer: <span class="user"><%= link_to @usRev.name, @usrev %></span></h2>
+		<span class="timestamp">Posted <%= time_ago_in_words(@elem.created_at) %> ago.</span>
+		<% if current_user?(@usRev) %>
+			<%= link_to "delete", @elem, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-default btn-lg btn-block" %>
+        <% end %>
+	</div>
+</div>
 </li>

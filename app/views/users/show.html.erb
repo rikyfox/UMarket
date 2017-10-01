@@ -57,10 +57,10 @@
 	<% if logged_in? && current_user.vendor? %>
 		<section><mark><%=@user.description %></mark></section>
     <% end %>
-    <% if logged_in? && current_user.vendor? %>
+    <% if logged_in? && current_user.vendor? && @user.vendor? %>
         <%= render 'follow_form' if logged_in? %>
     <% end %>
-    <% unless current_user?(@user) || current_user.buyer?%>
+    <% if !current_user?(@user) && current_user.vendor? && @user.vendor? %>
         <%= link_to 'Send message', new_conversation_path(to: @user), class: "btn btn-default btn-block" %>
     <% end %>
 

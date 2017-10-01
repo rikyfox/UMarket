@@ -8,13 +8,13 @@
 				<%= render_shareable :buttons=>['google_plus'] %>
 				<% if logged_in? && current_user.vendor? %>
 					<div class='set blue'>
-						<%= link_to "Bacheca Venditore", @user, class: "btn sec" %>
+						<%= link_to "Owner", @user, class: "btn sec" %>
 						<span class="user">
 							<% if current_user?(@user) %>
 								<ul>
-								<li><%= link_to "Modifica negozio", edit_user_market_path(@user, @market) %></li>
-								<li><%= link_to "Distruggi negozio", user_market_url, method: :delete,
-								data: { confirm: "You sure?" } %></li>
+								<li><div class='set black'><%= link_to "Edit market", edit_user_market_path(@user, @market) , class: "btn sec ico"%></div></li>
+								<li><div class='set red'><%= link_to "Destroy market", user_market_url, method: :delete,
+								data: { confirm: "You sure?" },class: "btn pri ico" %></li>
 								</ul>
 							<% end %>
 						</span>
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 
-		<h3>Articoli del negozio:</h3>
+		<h3>Market's articles:</h3>
 
 		<div class="row">
 			<div class="col-sm-8">
@@ -52,7 +52,7 @@
 
 	<% if current_user?(@user) && current_user.vendor? %>
 		<div class='set green'>
-			<%= link_to "Crea articolo", new_user_market_article_path(@user, @market), class: "btn pri ico" %>
+			<%= link_to "Create article", new_user_market_article_path(@user, @market), class: "btn pri ico" %>
 		</div>
 	<% end %>
 
