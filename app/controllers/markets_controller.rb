@@ -26,10 +26,14 @@ class MarketsController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:user_id])
-	@market = @user.markets.find(params[:id])
-	@articles = @market.articles.paginate(page: params[:page])
-  end
+	begin
+		@user = User.find(params[:user_id])
+		@market = @user.markets.find(params[:id])
+		@articles = @market.articles.paginate(page: params[:page])
+	rescue ActiveRecord::RecordNotFound
+		redirect_to root_path
+	end
+	end
   
   def edit
 	@user=User.find(params[:user_id])

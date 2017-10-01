@@ -17,14 +17,18 @@ class UsersController < ApplicationController
 
 
   def show
-	@user = User.find(params[:id])      # we’ve used params to retrieve the user id
-	if !current_user.admin?
-		if current_user.vendor?
-			@microposts = @user.microposts.paginate(page: params[:page])
+	begin
+		@user = User.find(params[:id])      # we’ve used params to retrieve the user id
+		if !current_user.admin?
+			if current_user.vendor?
+				@microposts = @user.microposts.paginate(page: params[:page])
+			end
+			@markets = @user.markets.paginate(page: params[:page])
+		else
+			@users = User.paginate(page: params[:page])
 		end
-		@markets = @user.markets.paginate(page: params[:page])
-	else
-		@users = User.paginate(page: params[:page])
+	rescue ActiveRecord::RecordNotFound
+		redirect_to root_path
 	end
   end
 

@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
 
   resources :users do
-    resources :markets do
-		resources :articles
+    resources :markets, except: [:index] do
+		resources :articles, except: [:index]
 	end
 
 
@@ -58,5 +58,7 @@ Rails.application.routes.draw do
       delete :empty_trash
     end
   end
-
+  
+  get '*path' => redirect('/')			#reinvia alla rootpage per tutte le altre url, ma non funziona su /users
+										#o su /users/100 quando non è presente il 100° utente
 end

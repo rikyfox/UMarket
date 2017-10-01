@@ -59,13 +59,17 @@ class ArticlesController < ApplicationController
   end
 
    def show
-  @user = User.find(params[:user_id])
-	@market = @user.markets.find(params[:market_id])
-	@article = @market.articles.find(params[:id])
-  if  logged_in? && @current_user.buyer? 
-    @review = current_user.reviews.build
-  end
-  #pre-alloco risorsa x 'shared/review_form'
+	   begin
+			@user = User.find(params[:user_id])
+			@market = @user.markets.find(params[:market_id])
+			@article = @market.articles.find(params[:id])
+			if  logged_in? && @current_user.buyer? 
+				@review = current_user.reviews.build
+			end
+			#pre-alloco risorsa x 'shared/review_form'
+		rescue ActiveRecord::RecordNotFound
+			redirect_to root_path
+		end
   end
 
   private
