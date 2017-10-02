@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :reviews, dependent: :destroy
+
   enum role: [:buyer, :vendor, :admin]
+  has_many :reviews, dependent: :destroy
   has_one  :shopping_cart
   has_one  :shopping_list
   has_many :assignments
@@ -35,6 +36,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :role, presence: true
 
   acts_as_messageable
   before_destroy { messages.destroy_all }

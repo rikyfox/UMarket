@@ -1,10 +1,15 @@
 Given(/^a valid buyer user$/) do
+  sc = ShoppingCart.create
+  sl = ShoppingList.create
   @user = User.create!({
 			 :name => "TestBuyer",
              :email => "buyer@buyer.com",
              :password => "12345678",
              :password_confirmation => "12345678",
-             :role => "buyer"
+             :role => "buyer",
+             :shopping_cart_id => sc.id,
+             :shopping_list_id => sl.id
+
            })
 end
 
