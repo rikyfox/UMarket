@@ -53,9 +53,26 @@ class ArticlesController < ApplicationController
   def destroy
 	@user=User.find(params[:user_id])
 	@market=@user.markets.find(params[:market_id])
-	@market.articles.find(params[:id]).destroy
+  #elimino corrispondenza da sList
+  art = Article.find(params[:id])
+  ShoppingList.all.each do |list|
+    list.shopping_cart_items.each do |elem|
+      if elem.item_id == art.id
+        elem.update_attribute(:aviable,false )
+      end
+    end
+  end
+  #elimino elem da cart di ogni buyer => evita err su carrello
+  ShoppingCart.all.each do |cart|
+    cart.shopping_cart_items.each do |elem|
+      if elem.item_id == art.id
+        cart.remove(art, elem.quantity)
+      end
+    end
+  end
+	art.destroy
 	flash[:success] = "Article deleted"
-   redirect_to user_market_path(@user, @market)
+  redirect_to user_market_path(@user, @market)
   end
 
    def show
@@ -63,7 +80,7 @@ class ArticlesController < ApplicationController
 			@user = User.find(params[:user_id])
 			@market = @user.markets.find(params[:market_id])
 			@article = @market.articles.find(params[:id])
-			if  logged_in? && @current_user.buyer? 
+			if  logged_in? && @current_user.buyer?
 				@review = current_user.reviews.build
 			end
 			#pre-alloco risorsa x 'shared/review_form'

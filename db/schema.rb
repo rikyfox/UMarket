@@ -153,6 +153,9 @@ ActiveRecord::Schema.define(version: 20170926223357) do
     t.string   "item_type"
     t.integer  "price_cents",    default: 0,     null: false
     t.string   "price_currency", default: "USD", null: false
+    t.integer  "prezzo"
+    t.string   "nome"
+    t.boolean  "aviable"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
@@ -170,6 +173,9 @@ ActiveRecord::Schema.define(version: 20170926223357) do
     t.string   "item_type"
     t.integer  "price_cents",    default: 0,     null: false
     t.string   "price_currency", default: "USD", null: false
+    t.integer  "prezzo"
+    t.string   "nome"
+    t.boolean  "aviable"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end

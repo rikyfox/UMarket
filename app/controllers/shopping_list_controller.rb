@@ -19,15 +19,22 @@ class ShoppingListController < ApplicationController
             current_val = Article.find(elem.item_id).prezzo
             val += (current_val * quantity)
          end
-        if @user.budget<val
-            flash[:warning] = "non hai abbastanza credito per acquisire l'ordine"
+         if @user.budget<val
+           flash[:warning] = "non hai abbastanza credito per continuare l'ordine"
         else
             @user.budget -= val
             @user.update_attribute(:budget, @user.budget)
             @cart.shopping_cart_items.each do |elem|
               art = Article.find(elem.item_id)
               qty = elem.quantity
+              price_I = art.prezzo
+              name_I = art.name
               @list.add(art , art.prezzo , qty)#agg a lista di comprati
+              #aggiorno info su prezzo e nome (evita errore scrittura su show Slist quando un articolo viene rimosso da U-MK)
+              link_item = @list.shopping_cart_items.find_by item_id: elem.item_id
+              link_item.update_attribute(:nome   ,name_I )
+              link_item.update_attribute(:prezzo ,price_I)
+              link_item.update_attribute(:aviable, true  )
               @cart.remove(art , qty)
             end
             flash[:success] = "il tuo ordine è stato completato!!"

@@ -9,6 +9,10 @@ class ShoppingCartItemController < ApplicationController
     @article = Article.find(params[:id])
     @price = @article.prezzo
     if @cart.add(@article, @price , 1)
+      link_item = @cart.shopping_cart_items.find_by item_id: @article.id
+      link_item.update_attribute(:nome   ,@article.name  )
+      link_item.update_attribute(:prezzo ,@article.prezzo)
+      link_item.update_attribute(:aviable, true          )
       flash[:success] = "articolo aggiunto al carrello!"
     else
       flash[:warning] = "error-add_article"
@@ -20,6 +24,8 @@ class ShoppingCartItemController < ApplicationController
   def destroy  #remove
     @user = User.find(params[:user_id])
     @cart = ShoppingCart.find(params[:shopping_cart_id])
+    in_cycle = false
+    @cart.shopping_cart_items.each do |elem|
     #passo un riferimento = è solo wrapper   (article_id == params[:id])
     @article = Article.find(params[:id])
     if @cart.remove(@article , 1 )
@@ -29,7 +35,5 @@ class ShoppingCartItemController < ApplicationController
     end
     redirect_to user_shopping_cart_path(@user,@cart)
   end
-
-
-
+end
 end

@@ -8,46 +8,55 @@
         <h2>Tutti gli articoli comprati </h2>
         <% if @list.shopping_cart_items.any? %>
         <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-            <div class="media">
-              <% @list.shopping_cart_items.each do |elem| %>
-                  <a class="pull-left" href="#" target="_parent">
+					<% @list.shopping_cart_items.each do |elem| %>
+							<div class="media">
+								 <%if elem.aviable == true %>
+									<a class="pull-left" href="#" target="_parent">
                        <%= image_tag Article.find(elem.item_id).picture.url,
                        class: "img-responsive",
                          size:"150x150" if Article.find(elem.item_id).picture? %>
-                         </a>
-                        <div class="clearfix visible-sm"></div>
+                      </a>
+										<% end %>
+									<div class="clearfix visible-sm"></div>
                   <div class="media-body fnt-smaller">
-                      <a href="#" target="_parent"></a>
-                          <h3 class="media-heading">
-                            <b><%= Article.find(elem.item_id).name %></b>
-                          </h3>
-                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                            <li>Prezzo:</li>
-                            <li><%= Article.find(elem.item_id).prezzo %></li>
-                          </ul>
-                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                            <li>Quantita:</li>
-                            <li><%= elem.quantity %></li>
-                          </ul>
-                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                            <li>Ultimo acquisto il </li>
-                            <li><%= elem.updated_at %></li>
-                          </ul>
-                          <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                            <li>
-                              <div class='set blue'>
-                              <%= link_to "Visit", user_market_article_path(Article.find(elem.item_id).market.user, Article.find(elem.item_id).market,Article.find(elem.item_id)), class: "btn pri ico" %>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                <% end %>
-              </div>
-            </div>
-            <% else %>
-            <h2>non hai ancora comprato niente!!</h2>
-            <% end %>
-
+                  <a href="#" target="_parent"></a>
+                  <h3 class="media-heading">
+                      <b><%= elem.nome %></b>
+                  </h3>
+                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                      <li>Prezzo:</li>
+                    	<li><%= elem.prezzo %></li>
+                    </ul>
+                  <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                      <li>Quantita:</li>
+                      <li><%= elem.quantity %></li>
+                    </ul>
+									<%if elem.aviable == true %>
+                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                      <li>Ultimo acquisto il </li>
+                      <li><%= elem.updated_at %></li>
+                    </ul>
+                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                      <li>
+                      <div class='set blue'>
+                      <%= link_to "Visit", user_market_article_path(Article.find(elem.item_id).market.user, Article.find(elem.item_id).market,Article.find(elem.item_id)), class: "btn pri ico" %>
+                      </div>
+                       </li>
+                     </ul>
+									  <% else %>
+										 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+	                       <li>articolo rimosso da U-MK il</li>
+	                       <li><%= elem.updated_at %></li>
+	                     </ul>
+									 <% end %>
+									 <hr />
+                    </div>
+                </div>
+						<% end %>
+        </div>
+        <% else %>
+        <h2>non hai ancora comprato niente!!</h2>
+      <% end %>
       </div>
     </div>
   </div>

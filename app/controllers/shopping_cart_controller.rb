@@ -8,7 +8,7 @@ class ShoppingCartController < ApplicationController
    @total = 0
    @cart.shopping_cart_items.each do |elem|
       quantity = elem.quantity
-      current_val = Article.find(elem.item_id).prezzo
+      current_val = elem.prezzo
       @total += (current_val * quantity)
     end
  end
