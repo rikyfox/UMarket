@@ -70,6 +70,11 @@ class ArticlesController < ApplicationController
       end
     end
   end
+  #elimino corrispondenza con reviews
+  art.reviews.each do |elem|
+    elem.destroy
+  end
+  #eliminazione art
 	art.destroy
 	flash[:success] = "Article deleted"
   redirect_to user_market_path(@user, @market)
