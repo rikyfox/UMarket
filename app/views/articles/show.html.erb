@@ -20,8 +20,8 @@
 				<span class="content">
 					<h4>Price:</h4> <%= @article.prezzo %></br>
 					<h4>Description:</h4> <%= @article.description %></br>
-					<h4>Status:</h4> <% if @article.status %>Avalaible<% end %>
-					<% if !@article.status %>Not Avalaible<% end %>
+					<h4>Status:</h4> <% if @article.status %>Available<% end %>
+					<% if !@article.status %>Not Available<% end %>
 				</span>
 				<!-- l'utente nn registrato non può aggiungere al carrello se prima nn si è autenticato -->
 
