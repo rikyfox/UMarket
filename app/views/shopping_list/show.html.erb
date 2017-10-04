@@ -3,9 +3,8 @@
 	<div class="container container-pad" id="property-listings">
     <div class="row">
       <div class="col-sm-8">
-        <h1>ShoppingList di <%= @user.name%> </h1>
-				<%= render_shareable :buttons=>['google_plus'] %>
-        <h2>Tutti gli articoli comprati </h2>
+        <h1>Shopping List by <%= @user.name%> </h1>
+        <h2>All items purchased</h2>
         <% if @list.shopping_cart_items.any? %>
         <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
 					<% @list.shopping_cart_items.each do |elem| %>
@@ -24,16 +23,16 @@
                       <b><%= elem.nome %></b>
                   </h3>
                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                      <li>Prezzo:</li>
+                      <li>Price:</li>
                     	<li><%= elem.prezzo %></li>
                     </ul>
                   <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                      <li>Quantita:</li>
+                      <li>Quantity:</li>
                       <li><%= elem.quantity %></li>
                     </ul>
 									<%if elem.aviable == true %>
                    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                      <li>Ultimo acquisto il </li>
+                      <li>Last purchase on </li>
                       <li><%= elem.updated_at %></li>
                     </ul>
                    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
@@ -45,7 +44,7 @@
                      </ul>
 									  <% else %>
 										 <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-	                       <li>articolo rimosso da U-MK il</li>
+	                       <li>item removed from U-MK on</li>
 	                       <li><%= elem.updated_at %></li>
 	                     </ul>
 									 <% end %>
@@ -55,7 +54,7 @@
 						<% end %>
         </div>
         <% else %>
-        <h2>non hai ancora comprato niente!!</h2>
+        <h2>you have not bought anything yet!!</h2>
       <% end %>
       </div>
     </div>

@@ -13,7 +13,7 @@ class ShoppingCartItemController < ApplicationController
       link_item.update_attribute(:nome   ,@article.name  )
       link_item.update_attribute(:prezzo ,@article.prezzo)
       link_item.update_attribute(:aviable, true          )
-      flash[:success] = "articolo aggiunto al carrello!"
+      flash[:success] = "item added to cart!"
     else
       flash[:warning] = "error-add_article"
     end
@@ -29,7 +29,7 @@ class ShoppingCartItemController < ApplicationController
     #passo un riferimento = è solo wrapper   (article_id == params[:id])
     @article = Article.find(params[:id])
     if @cart.remove(@article , 1 )
-      flash[:success] = "elemento cancellato -1"
+      flash[:success] = "deleted item -1"
     else
       flash[:warning] = "error-destroy_article"
     end

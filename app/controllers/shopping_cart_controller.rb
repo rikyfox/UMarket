@@ -17,7 +17,7 @@ class ShoppingCartController < ApplicationController
    @user = User.find(params[:user_id])
    @cart = ShoppingCart.find(params[:id])
    @cart.clear
-   flash[:success] = "carrello svuotato"
+   flash[:success] = "the carriage has been emptied"
    redirect_to user_shopping_cart_path(@user,@cart)
  end
 

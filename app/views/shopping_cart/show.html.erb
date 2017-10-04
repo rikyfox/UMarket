@@ -3,8 +3,7 @@
 	<div class="container container-pad" id="property-listings">
     <div class="row">
       <div class="col-sm-8">
-        <h1>ShoppingCart di <%= @user.name%> </h1>
-				<%= render_shareable :buttons=>['google_plus'] %>
+        <h1>Shopping Cart by <%= @user.name%> </h1>
         <% if @cart.shopping_cart_items.any?  %>
         <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
             <div class="media">
@@ -21,11 +20,11 @@
                             <b><%= elem.nome %></b>
                           </h3>
                           <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                            <li>Prezzo:</li>
+                            <li>Price:</li>
                             <li><%= elem.prezzo %></li>
                           </ul>
                           <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-                            <li>Quantita:</li>
+                            <li>Quantity:</li>
                             <li><%= elem.quantity %></li>
                           </ul>
                       <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
@@ -55,7 +54,7 @@
 										 </div>
                 </div>
         <% else %>
-        <h2>non hai ancora artioli nel carrello!!</h2>
+        <h2>You have no items in your shopping cart yet!!</h2>
         <% end %>
 	  	</div>
     </div>

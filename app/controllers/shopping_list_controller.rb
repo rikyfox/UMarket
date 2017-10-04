@@ -20,7 +20,7 @@ class ShoppingListController < ApplicationController
             val += (current_val * quantity)
          end
          if @user.budget<val
-           flash[:warning] = "non hai abbastanza credito per continuare l'ordine"
+           flash[:warning] = "you do not have enough credit to complete the order"
         else
             @user.budget -= val
             @user.update_attribute(:budget, @user.budget)
@@ -37,10 +37,10 @@ class ShoppingListController < ApplicationController
               link_item.update_attribute(:aviable, true  )
               @cart.remove(art , qty)
             end
-            flash[:success] = "il tuo ordine è stato completato!!"
+            flash[:success] = "your order has been completed!!"
         end
       else
-        flash[:warning] = "il tuo carrello è vuoto!"
+        flash[:warning] = "Your shopping cart is empty!"
       end
       redirect_to user_shopping_cart_path(@user,@cart)
     end
