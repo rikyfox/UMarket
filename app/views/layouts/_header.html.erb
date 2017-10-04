@@ -22,7 +22,7 @@
 		  <% else %>
 			      <li><%= link_to "Markets", followingmarkets_user_path(current_user) %></li>
             <li><%= link_to "Shopping Cart", user_shopping_cart_path(@current_user,@current_user.shopping_cart_id) %></li>
-            <li><%= link_to "Shopping List", user_shopping_list_path(@current_user,@current_user.shopping_list_id) %></li>
+            <li><%= link_to "Shopping History", user_shopping_list_path(@current_user,@current_user.shopping_list_id) %></li>
 		  <% end %>
 		 <% end %>
           <li class="dropdown">

@@ -3,7 +3,7 @@
 	<div class="container container-pad" id="property-listings">
     <div class="row">
       <div class="col-sm-8">
-        <h1>Shopping List by <%= @user.name%> </h1>
+        <h1>Shopping History by <%= @user.name%> </h1>
         <h2>All items purchased</h2>
         <% if @list.shopping_cart_items.any? %>
         <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
@@ -54,7 +54,7 @@
 						<% end %>
         </div>
         <% else %>
-        <h2>you have not bought anything yet!!</h2>
+        <h2>You have not bought anything yet!!</h2>
       <% end %>
       </div>
     </div>
