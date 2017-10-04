@@ -3,11 +3,11 @@ cosa ed è anche un social per coloro che vogliono vendere.
 E' possibile navigare liberamente il sito, tuttavia senza registrarsi non è possibile comprare o vendere articoli.
 Tramite registrazione si possono scegliere 2 tipologie di account (venditore-acquirente).
 I livelli di accesso sono 4 (visitatore,acquirente,venditore,amministratore).
-Appena entrati nella homepage insieme alla Search Bar vengono visualizzati tutti i nomi dei negozi divisi per tipologia.
-É possibile effettuare ricerche per nome di articolo o negozio o per tipologia di articolo.
+Appena entrati nella homepage appare una Search Bar tramite cui è possibile
+effettuare ricerche per nome di articolo o negozio.
 Ogni utente può modificare i suoi dati di accesso ed effettuare il logout dal sito in qualsiasi
 momento.
-COMPRATORE
+ACQUIRENTE
 Nel momento in cui il visitatore vuole comprare un articolo può aggiungerlo al carrello autenticandosi o
 registrandosi tramite l'apposita form, per poi confermare l'acquisto.
 Un utente compratore può commentare e lasciare una valutazione di un articolo andando sulla pagina dell'oggetto
@@ -22,10 +22,5 @@ Può anche modificare la sua pagina profilo o visualizzare la pagina
 profilo di qualsiasi altro utente venditore e seguire le loro pagine o mandargli messaggi privati ma non è
 comunque in grado di modificare o mettere commenti riguardanti gli articoli che vende.
 AMMINISTRATORE
-L'amministratore del sito è in grado di vedere e modificare tutte le info relative a carrello,negozio, profili utenti,
-commenti e articoli.
-<<<<<<< HEAD
-L'amministratore può cancellare gli utenti dal sito.
-=======
-L'amministratore può cancellare gli utenti dal sito.
->>>>>>> fd636ba646402cd637c3080b6c758bba6a1fc1dd
+L'amministratore del sito può cancellare qualsiasi utente di UMarket
+
