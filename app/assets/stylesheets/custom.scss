@@ -306,10 +306,10 @@ hr.style5 {
 
 #myBtn.demo {
     padding: 5px;
-    background: #fff;
+    background: #4cff4c;
     cursor: pointer;
     line-height: 20px;
-    border: 1px solid #e6e6e6;
+    border: 1px solid #000;
     border-radius: 4px;
   }
   #myBtn.demo .icon {
@@ -319,7 +319,7 @@ hr.style5 {
     background: url('../../images/branding/btn_icons_sprite.png') transparent 0 -40px no-repeat;
   }
   #myBtn.demo:hover {
-    background-color: #cc3732;
+    background-color: #007f00;
     color: #fff;
     border: #dd4b39;
   }
