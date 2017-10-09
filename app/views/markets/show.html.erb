@@ -5,7 +5,20 @@
 			<div class="col-md-4">
 				<h1><%= @market.name %></h1>
 				<h3><%= @market.user.name %></h3>
-				<%= render_shareable :buttons=>['google_plus'] %>
+
+                <button
+  class="g-interactivepost"
+  data-contenturl="https://plus.google.com/pages/"
+  data-contentdeeplinkid="/pages"
+  data-clientid="314782486444-f69pq2qh6csups5shd70811377tmes8g.apps.googleusercontent.com"
+  data-cookiepolicy="single_host_origin"
+  data-prefilltext="Engage your users today, create a Google+ page for your business."
+  data-calltoactionlabel="CREATE"
+  data-calltoactionurl="http://plus.google.com/pages/create"
+  data-calltoactiondeeplinkid="/pages/create">
+  Tell your friends
+</button>
+
 				<% if logged_in? && current_user.vendor? %>
 					<div class='set blue'>
 						<%= link_to "Owner", @user, class: "btn sec" %>
@@ -58,3 +71,5 @@
 
 	</div>
 </div>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
