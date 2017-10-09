@@ -7,8 +7,20 @@
 				<h3><%= @market.name %></h3>
 
 			    <%= image_tag @article.picture.url, size:"250x250" if @article.picture? %>
-                <%= render_shareable :buttons=>['google_plus'] %>
-				<div class='set blue'>
+
+                <button id="myBtn" class="demo g-interactivepost"
+                    data-contenturl="<%= user_market_article_url%>"
+                    data-contentdeeplinkid="/pages"
+                    data-clientid="314782486444-f69pq2qh6csups5shd70811377tmes8g.apps.googleusercontent.com"
+                    data-cookiepolicy="single_host_origin"
+                    data-prefilltext="Engage your users today, create a Google+ page for your business."
+                    data-calltoactionlabel="CREATE"
+                    data-calltoactionurl="http://plus.google.com/pages/create"
+                    data-calltoactiondeeplinkid="/pages/create">
+                    Share with Google+
+                </button>
+
+                <div class='set blue'>
 					<%= link_to "Market", user_market_path(@user, @market), class: "btn sec" %>
 				</div>
 
@@ -82,3 +94,5 @@
 
 	</div>
 </div>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
